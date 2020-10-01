@@ -100,7 +100,7 @@ http://localhost:8080/hotel/viewall , apa yang akan ditampilkan? Sertakan juga b
 **Jawab**
 Jika saya klik tombol kembali atau pergi ke http://localhost:8080/hotel/viewall maka yang terjadi adalah saya bisa melihat seluruh hotel beserta informasi hotel yang sudah terdaftarkan. 
 
-![Nomor 5](https://ibb.co/Jvw1RCS)
+<img src="https://ibb.co/Jvw1RCS" width="256">
 
 ### Sources:
  - https://www.javatpoint.com/autowiring-in-spring
