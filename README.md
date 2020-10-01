@@ -59,4 +59,49 @@ Pada dasarnya keduanya memiliki tujuan untuk mengekstrak values dari HTTP reques
  - https://www.quora.com/What-is-Spring-Framework-used-for#:~:text=Millions%20of%20developers%20around%20the,and%20speed%20up%20development%20time.
  - https://www.javacodegeeks.com/2017/10/differences-requestparam-pathvariable-annotations-spring-mvc.html
  - https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
-=======
+
+
+
+---
+## Tutorial 2
+
+1. Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut:
+http://localhost:8080/hotel/add?idHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom&noTelepon=081xxx
+
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi?
+
+**Jawab**
+Jika dijalankan akan terjadi Whitelabel Error Page Service Error 500, karena pada controller sudah ada perintah return "add-hotel". Controller fungsinya adalah melakukan mapping dari sebuah *request* yang dinput, lalu disini sudah diminta untuk memanggil *template* html add-hotel yang sebenarnya belum dibuat, tentu ini akan menyebabkan *error*.
+
+
+2. Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam konteks service dan controller yang telah kamu buat!
+
+**Jawab**
+Anotasi @Autowired pada controller merupakan implementasi dari konsep dependancy injection. Autowired ini memungkinkan kita untuk memasukan dependensi objek secara implisit. Jadi peletakan autowired pada HotelControlller itu agar kita tidak perlu membuat setter, getter, atau constructor, karena autowired sudah otomatis akan mencari service yang mengimplementasikan interface HotelService.
+
+
+3. Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut:
+http://localhost:8080/hotel/add?idHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi?
+
+**Jawab**
+Jika dijalankan akan terjadi Bad Request 400, ini dikarenakan parameter nomor telepon tidak dicantumkan dimana atribut nomor telepon seharusnya *required* dan tidak boleh null.
+
+4. Jika Papa APAP ingin melihat Hotel dengan nama Papa APAP, link apa yang harus diakses?
+
+**Jawab**
+http://localhost:8080/hotel/view?idHotel=1&namaHotel=Papa%20APAP
+atau
+http://localhost:8080/hotel/view?idHotel=1
+
+5. Tambahkan 1 contoh Hotel lainnya sesukamu. Lalu cobalah untuk mengakses
+http://localhost:8080/hotel/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
+
+**Jawab**
+Jika saya klik tombol kembali atau pergi ke http://localhost:8080/hotel/viewall maka yang terjadi adalah saya bisa melihat seluruh hotel beserta informasi hotel yang sudah terdaftarkan. 
+
+![Nomor 5](https://ibb.co/Jvw1RCS)
+
+### Sources:
+ - https://www.javatpoint.com/autowiring-in-spring
+
