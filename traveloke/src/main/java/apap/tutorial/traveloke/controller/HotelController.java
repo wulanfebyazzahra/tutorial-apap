@@ -68,10 +68,13 @@ public class HotelController {
     public String GetIdwithPathVariable(
             @PathVariable(value = "idHotel") String idHotel,
             Model model
-    ){
+    ){ if (idHotel != null) {
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
         model.addAttribute("hotel", hotel);
         return "view-hotel";
+    }else{
+        return "hotel=null";
+    }
     }
 
     @GetMapping(value = "/hotel/update/id-hotel/{idHotel}/no-telepon/{noTelepon}")
@@ -79,19 +82,26 @@ public class HotelController {
             @PathVariable(value = "idHotel") String idHotel,
             @PathVariable(value = "noTelepon") String noTelepon,
             Model model
-    ){
-        HotelModel hotel = hotelService.updateHotel(idHotel, noTelepon);
-        model.addAttribute("hotel", hotel);
-        return "update-hotel";
+    ){ if (idHotel != null) {
+            HotelModel hotel = hotelService.updateHotel(idHotel, noTelepon);
+            model.addAttribute("hotel", hotel);
+            return "update-hotel";
+        }else{
+            return "hotel-null";
+        }
     }
 
     @GetMapping(value = "/hotel/delete/id-hotel/{idHotel}")
     public String DeletePathVariable(
             @PathVariable(value = "idHotel") String idHotel,
             Model model
-    ){
-        HotelModel hotel = hotelService.deleteHotel(idHotel);
-        model.addAttribute("hotel", hotel);
-        return "delete-hotel";
+    ) {
+        if (idHotel != null) {
+            HotelModel hotel = hotelService.deleteHotel(idHotel);
+            model.addAttribute("hotel", hotel);
+            return "delete-hotel";
+        } else {
+            return "hotel-null";
+        }
     }
 }
