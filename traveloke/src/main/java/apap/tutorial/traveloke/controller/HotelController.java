@@ -20,10 +20,10 @@ public class HotelController {
     @RequestMapping("/hotel/add")
     public String addHotel(
             // Request parameter yang ingin dibawa
-            @RequestParam(value= "idHotel", required = true) String idHotel,
-            @RequestParam(value= "namaHotel", required = true) String namaHotel,
-            @RequestParam(value= "alamat", required = true) String alamat,
-            @RequestParam(value= "noTelepon", required = true) String noTelepon,
+            @RequestParam(value = "idHotel", required = true) String idHotel,
+            @RequestParam(value = "namaHotel", required = true) String namaHotel,
+            @RequestParam(value = "alamat", required = true) String alamat,
+            @RequestParam(value = "noTelepon", required = true) String noTelepon,
             Model model
     ) {
         // Membuat objek HotelModel
@@ -40,7 +40,7 @@ public class HotelController {
     }
 
     @RequestMapping("/hotel/viewall")
-    public String listhotel(Model model){
+    public String listhotel(Model model) {
 
         // Mendapatkan semua HotelModel
         List<HotelModel> listHotel = hotelService.getHotelList();
@@ -53,7 +53,7 @@ public class HotelController {
     }
 
     @RequestMapping("/hotel/view")
-    public String detailHotel(@RequestParam(value= "idHotel") String idHotel, Model model) {
+    public String detailHotel(@RequestParam(value = "idHotel") String idHotel, Model model) {
 
         // Mendapatkan HotelModel sesuai dengan idHotel
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
@@ -68,13 +68,13 @@ public class HotelController {
     public String GetIdwithPathVariable(
             @PathVariable(value = "idHotel") String idHotel,
             Model model
-    ){ if (idHotel != null) {
+    ) {
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
+        if (hotel == null) {
+            return "hotel-null";
+        }
         model.addAttribute("hotel", hotel);
         return "view-hotel";
-    }else{
-        return "hotel=null";
-    }
     }
 
     @GetMapping(value = "/hotel/update/id-hotel/{idHotel}/no-telepon/{noTelepon}")
@@ -82,13 +82,13 @@ public class HotelController {
             @PathVariable(value = "idHotel") String idHotel,
             @PathVariable(value = "noTelepon") String noTelepon,
             Model model
-    ){ if (idHotel != null) {
-            HotelModel hotel = hotelService.updateHotel(idHotel, noTelepon);
-            model.addAttribute("hotel", hotel);
-            return "update-hotel";
-        }else{
+    ){
+        HotelModel hotel = hotelService.updateHotel(idHotel, noTelepon);
+        if (hotel == null) {
             return "hotel-null";
         }
+        model.addAttribute("hotel", hotel);
+        return "update-hotel";
     }
 
     @GetMapping(value = "/hotel/delete/id-hotel/{idHotel}")
@@ -96,12 +96,11 @@ public class HotelController {
             @PathVariable(value = "idHotel") String idHotel,
             Model model
     ) {
-        if (idHotel != null) {
-            HotelModel hotel = hotelService.deleteHotel(idHotel);
-            model.addAttribute("hotel", hotel);
-            return "delete-hotel";
-        } else {
+        HotelModel hotel = hotelService.deleteHotel(idHotel);
+        if (hotel == null) {
             return "hotel-null";
         }
+        model.addAttribute("hotel", hotel);
+        return "delete-hotel";
     }
 }
