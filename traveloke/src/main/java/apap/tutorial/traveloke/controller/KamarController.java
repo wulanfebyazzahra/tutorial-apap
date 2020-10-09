@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.util.List;
 
 @Controller
@@ -25,7 +24,7 @@ public class KamarController {
     private KamarService kamarService;
 
     @GetMapping("/kamar/add/{id}")
-    private String addKamarFormPage(@PathVariable Long id, Model model) {
+    private String addKamarFormPage(@PathVariable Long id, Model model){
         KamarModel kamar = new KamarModel();
         HotelModel hotel = hotelService.getHotelByIdHotel(id);
         kamar.setHotel(hotel);
@@ -34,7 +33,7 @@ public class KamarController {
     }
 
     @PostMapping("/kamar/add")
-    private String addKamarSubmit(@ModelAttribute KamarModel kamar, Model model) {
+    private String addKamarSubmit(@ModelAttribute KamarModel kamar, Model model){
         kamarService.addKamar(kamar);
         model.addAttribute("kamar", kamar);
         return "add-kamar";
@@ -59,11 +58,9 @@ public class KamarController {
     @GetMapping(value = "/kamar/delete/{noKamar}")
     public String DeletePathVariable(
             @PathVariable(value = "noKamar") Long noKamar,
-            Model model
-    ) {
+            Model model){
         List<KamarModel> kamar = kamarService.deleteKamar(noKamar);
         model.addAttribute("kamar", kamar);
         return "delete-kamar";
     }
-
 }

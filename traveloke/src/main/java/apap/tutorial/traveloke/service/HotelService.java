@@ -15,13 +15,13 @@ public interface HotelService {
     //Method untuk mendapatkan data sebuah hotel berdasarkan id hotel
     HotelModel getHotelByIdHotel(Long id);
 
-    // Method untuk mendapatkan data nomor telepon
+    // Method untuk mengupdate suatu data hotel
     HotelModel updateHotel(HotelModel hotel);
 
-    // Method untuk order by desc
-    List<HotelModel> getHotelDesc();
+    // Method untuk order hotel by descending
+     List<HotelModel> getIdOrderDesc();
 
-    // Method untuk menghapus data
+    // Method untuk menghapus data hotel
     List<HotelModel> deleteHotel(Long id);
 }
 

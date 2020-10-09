@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.*;
 
 @Controller
@@ -44,8 +43,8 @@ public class HotelController{
     @GetMapping("/hotel/change/{id}")
     public String changeHotelFormPage(
             @PathVariable Long id,
-            Model model
-    ){ try{
+            Model model){
+        try{
             HotelModel hotel = hotelService.getHotelByIdHotel(id);
             model.addAttribute("hotel", hotel);
             return "form-update-hotel";
@@ -67,21 +66,22 @@ public class HotelController{
     @GetMapping("/hotel/view")
     public String viewDetailHotel(
             @RequestParam(value = "id") Long id,
-            Model model
-    ){try {
-        List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(id);
-        HotelModel hotel = hotelService.getHotelByIdHotel(id);
-        model.addAttribute("hotel", hotel);
-        model.addAttribute("listKamar", listKamar);
-        return "view-hotel";
-    }catch (Exception e){
-        return "hotel-null";
-    }
+            Model model){
+        try {
+            List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(id);
+            HotelModel hotel = hotelService.getHotelByIdHotel(id);
+            model.addAttribute("hotel", hotel);
+            model.addAttribute("listKamar", listKamar);
+            return "view-hotel";
+        }
+        catch (Exception e){
+            return "hotel-null";
+        }
     }
 
     @GetMapping("/hotel/viewall")
     public String viewAllHotel(Model model){
-        List<HotelModel> hotel = hotelService.getHotelDesc();
+        List<HotelModel> hotel = hotelService.getIdOrderDesc();
         model.addAttribute("hotel", hotel);
         return "viewall-hotel";
     }
@@ -89,8 +89,7 @@ public class HotelController{
     @GetMapping(value = "/hotel/delete/{id}")
     public String DeletePathVariable(
             @PathVariable(value = "id") Long id,
-            Model model
-    ) {
+            Model model){
         try{
             HotelModel hotel = hotelService.getHotelByIdHotel(id);
             List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(id);
@@ -98,7 +97,8 @@ public class HotelController{
                 List<HotelModel> hotel1 = hotelService.deleteHotel(id);
                 model.addAttribute("hotel", hotel1);
                 return "delete-hotel";
-            }else{
+            }
+            else{
                 return "warning";
             }
         }

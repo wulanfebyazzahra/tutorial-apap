@@ -33,20 +33,20 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public HotelModel updateHotel(HotelModel hotel){
         HotelModel targetHotel = hotelDb.findById(hotel.getId()).get();
-
         try{
             targetHotel.setNamaHotel(hotel.getNamaHotel());
             targetHotel.setAlamat(hotel.getAlamat());
             targetHotel.setNomorTelepon(hotel.getNomorTelepon());
             hotelDb.save(targetHotel);
             return targetHotel;
-        }catch(NullPointerException nullException){
+        }
+        catch(NullPointerException nullException){
             return null;
         }
     }
 
     @Override
-    public List<HotelModel> getHotelDesc() {
+    public List<HotelModel> getIdOrderDesc(){
         return hotelDb.findAllByOrderByIdDesc();
     }
 
@@ -55,4 +55,5 @@ public class HotelServiceImpl implements HotelService {
         hotelDb.deleteById(id);
         return null;
     }
+
 }

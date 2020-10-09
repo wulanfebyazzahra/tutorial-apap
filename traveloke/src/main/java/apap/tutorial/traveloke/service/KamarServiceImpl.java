@@ -29,14 +29,14 @@ public class KamarServiceImpl implements KamarService{
     @Override
     public KamarModel updateKamar(KamarModel kamar){
         KamarModel targetKamar = kamarDb.findById(kamar.getNoKamar()).get();
-
         try{
             targetKamar.setNamaKamar(kamar.getNamaKamar());
             targetKamar.setTipe(kamar.getTipe());
             targetKamar.setKapasitasKamar(kamar.getKapasitasKamar());
             kamarDb.save(targetKamar);
             return targetKamar;
-        }catch(NullPointerException nullException){
+        }
+        catch(NullPointerException nullException){
             return null;
         }
     }
