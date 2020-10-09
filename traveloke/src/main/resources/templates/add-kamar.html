@@ -4,7 +4,7 @@
     <title>Add Kamar</title>
 </head>
 <body>
-<h2>Kamar Berhasil Ditambahkan!</h2>
-<a href="/hotel/view">Kembali</a>
+<h2 th:text="'Kamar dengan id kamar ' + ${kamar.noKamar} + ' berhasil ditambahkan.'"></h2>
+<a href="/hotel/viewall">View all Hotel</a>
 </body>
 </html>

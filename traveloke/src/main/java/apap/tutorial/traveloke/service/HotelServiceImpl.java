@@ -44,4 +44,15 @@ public class HotelServiceImpl implements HotelService {
             return null;
         }
     }
+
+    @Override
+    public List<HotelModel> getHotelDesc() {
+        return hotelDb.findAllByOrderByIdDesc();
+    }
+
+    @Override
+    public List<HotelModel> deleteHotel(Long id) {
+        hotelDb.deleteById(id);
+        return null;
+    }
 }

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Update Hotel</title>
+    <title>Updated Hotel</title>
 </head>
 <body>
-<h2 th:text="'Hotel dengan id hotel ' + ${id} + ' berhasil diubah.'"></h2>
-<a href="/hotel/view">Kembali</a>
+<h2 th:text="'Hotel dengan id Hotel ' + ${hotel.id} + ' berhasil diubah.'"></h2>
+<a href="/hotel/viewall">View All Hotel</a>
 </body>
 </html>

@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Update Data Hotel</title>
 </head>
 <body>
 <h2>Change Data Hotel</h2>
-<form th:action="@{/hotel/change}"th:object="${hotel}" method="POST">
+<h3>Tambah Hotel</h3>
+<form th:action = "@{/hotel/change}" th:object = "${hotel}" method = "POST">
     <input type="hidden" th:field="*{id}">
-    Nama Hotel: <br>
+    Nama Hotel : <br>
     <input type="text" name="namaHotel" th:value="*{namaHotel}"/>
     <br><br>
     Alamat : <br>
-    <input type="text" name="alamat" th:value="*{alamat}"/>
+    <input type = "text" name="alamat" th:value="*{alamat}"/>
     <br><br>
     Nomor Telepon : <br>
-    <input type="number" name="namaHotel" th:value="*{nomorTelepon}"/>
+    <input type = "number" name="nomorTelepon" th:value="*{nomorTelepon}"/>
     <br><br>
-    <button type="submit" value="submit">Submit</button>
+    <button type="submit">Submit</button>
 </form>
-
 </body>
 </html>

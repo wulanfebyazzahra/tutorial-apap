@@ -105,3 +105,47 @@ https://ibb.co/Jvw1RCS
 ### Sources:
  - https://www.javatpoint.com/autowiring-in-spring
 
+
+---
+## Tutorial 3
+1. Pada class KamarDb, terdapat method findAllByHotelId, apakah kegunaan dari method tersebut?
+
+**Jawab**:
+Kegunaan dari method findAllByHotelId di KamarDb adalah untuk mencari semua kamar yang tersedia pada suatu hotel berdasarkan Id hotel tersebut. Kemudian seluruh kamar ini akan dimasukkan kedalam list.
+
+2. Pada class HotelController, jelaskan perbedaan method addHotelFormPage dan addHotelSubmit?
+
+**Jawab**:
+Method addHotelFormPage memiliki fungsi yaitu untuk menerima request dari HTTP. Nantinya method ini akan menggunakan GetMapping untuk menangani method GET dari HTTP dan mengambil data dari request tersebut.
+
+Method addHotelSubmit memiliki fungsi yaitu menangani method POST seperti *add* atau *update* dengan ini akan menggunakan PostMapping. 
+
+3. Jelaskan kegunaan dari JPA Repository!
+
+**Jawab**:
+JPA Repository merupakan sebuah modul dari JPA yang berisi *namespace custom*, modul ini memungkinkan penentuan *repository beans*. Modul ini juga berisi fitur dan atribut elemen tertentu yang dikhususkan untuk JPA. Jadi dengan menggunakan JPA Repository ini kita bisa membuat *repository custom* sendiri di lokal, selain itu kita juga bisa menghubungkan relational database lokal kita dengan Java.
+
+4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara HotelModel dan KamarModel dibuat?
+
+**Jawab**:
+- Pada HotelModel, hubungan relasinya dengan KamarModel adalah @OneToMany. Ini dikarenakan hotel dapat memiliki banyak kamar. 
+
+- Pada KamarModel, hubungan relasinya dengan HotelModel adalah @ManytoOne, karena banyak kamar dapat dimiliki oleh satu hotel. 
+
+- Pada KamarModel terdapat hubungan @JoinColumn dimana fungsinya adalah untuk menggabungkan dua kolum idHotel dengan Id.
+
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER!
+
+**Jawab**:
+
+**FetchType.LAZY** memiliki kegunaan yaitu untuk memuat beberapa collecton object (child) yang dibutuhkan saja saat object parent di fetch. Collection object (child) hanya dimuat jika secara eksplisit dibutuhkan via getter method. Dalam kata lain inisialisasi ini hanya melakukan fetch hanya ketika suatu data dibutuhkan. Tujuan inisialisasi ini adalah untuk meningkatkan *performance*, dimana dengan inisialiasi ini komputasi yang tidak terlalu dibutuhkan akan dihindari. Selain itu inisialisasi ini akan mengurangi *memory requirements*. Default fetching dari inialisasi ini adalah @OneToMany dan @ManyToMany. Contoh kasusnya dalam implementasi tutorial ini adalah kita akan menggunakan FetchType.Lazy saat mau mengakses listkamar pada hotel, jadi kita hanya mengakses data yang dibutuhkan saja.
+
+**FetchType.EAGER** memiliki kegunaan yaitu untuk memuat semua collection object (child) sesaat setelah object parent di fetch. Dalam kata lain inisialisasi ini akan melakukan fetch secara bersamaan. Default fetching dari inialisasi ini adalah @OneToOne dan @ManyToOne. Contoh implementasinya pada tutorial 3 ini adalah saat kita ingin melihat keseluruhan hotel, dimana pastinya akan secara bersamaan datanya semuanya diakses.
+
+**CascadeType.ALL** memiliki kegunaan yaitu untuk memuat semua *actions* secara keseluruhan. Contohnya adalah ketika kita menghilangkan sebuah *parent*, maka tentu *child*-nya akan hilang juga.
+
+### Sources:
+ - https://www.java2novice.com/hibernate/eager-vs-lazy-fetch-type/#:~:text=FetchType.,is%20actually%20fetched%20by%20hibernate.
+ - https://docs.spring.io/spring-data/jpa/docs/1.3.4.RELEASE/reference/html/jpa.repositories.html
+ - https://www.baeldung.com/jpa-join-column
+
