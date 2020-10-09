@@ -6,7 +6,6 @@
 </head>
 <body>
 <h2>Change Data Hotel</h2>
-<h3>Tambah Hotel</h3>
 <form th:action = "@{/hotel/change}" th:object = "${hotel}" method = "POST">
     <input type="hidden" th:field="*{id}">
     Nama Hotel : <br>

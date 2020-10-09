@@ -36,6 +36,11 @@
         <h2>Hotel belum memiliki daftar kamar.</h2>
 </span>
 <td><a th:href="@{/kamar/add/}+${hotel.id}">Add Kamar</a></td>
+<br>
+<td><a th:href="@{/hotel/change/}+${hotel.id}">Update Hotel</a></td>
+<br>
 <td><a th:href="@{/hotel/delete/}+${hotel.id}">Delete Hotel</a></td>
+<br>
+<a href="/hotel/viewall">Kembali</a>
 </body>
 </html>
