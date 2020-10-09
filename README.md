@@ -111,14 +111,14 @@ https://ibb.co/Jvw1RCS
 1. Pada class KamarDb, terdapat method findAllByHotelId, apakah kegunaan dari method tersebut?
 
 **Jawab**:
-Kegunaan dari method findAllByHotelId di KamarDb adalah untuk mencari semua kamar yang tersedia pada suatu hotel berdasarkan Id hotel tersebut. Kemudian seluruh kamar ini akan dimasukkan kedalam list.
+Kegunaan dari method findAllByHotelId di KamarDb adalah untuk mencari semua kamar yang tersedia pada suatu hotel berdasarkan Id hotel tersebut, nantinya seluruh kamar ini akan dimasukkan kedalam list.
 
 2. Pada class HotelController, jelaskan perbedaan method addHotelFormPage dan addHotelSubmit?
 
 **Jawab**:
 Method addHotelFormPage memiliki fungsi yaitu untuk menerima request dari HTTP. Nantinya method ini akan menggunakan GetMapping untuk menangani method GET dari HTTP dan mengambil data dari request tersebut.
 
-Method addHotelSubmit memiliki fungsi yaitu menangani method POST seperti *add* atau *update* dengan ini akan menggunakan PostMapping. 
+Method addHotelSubmit memiliki fungsi yaitu menangani method POST seperti *add* atau *update* dengan menggunakan PostMapping. 
 
 3. Jelaskan kegunaan dari JPA Repository!
 
@@ -138,9 +138,9 @@ JPA Repository merupakan sebuah modul dari JPA yang berisi *namespace custom*, m
 
 **Jawab**:
 
-**FetchType.LAZY** memiliki kegunaan yaitu untuk memuat beberapa collecton object (child) yang dibutuhkan saja saat object parent di fetch. Collection object (child) hanya dimuat jika secara eksplisit dibutuhkan via getter method. Dalam kata lain inisialisasi ini hanya melakukan fetch hanya ketika suatu data dibutuhkan. Tujuan inisialisasi ini adalah untuk meningkatkan *performance*, dimana dengan inisialiasi ini komputasi yang tidak terlalu dibutuhkan akan dihindari. Selain itu inisialisasi ini akan mengurangi *memory requirements*. Default fetching dari inialisasi ini adalah @OneToMany dan @ManyToMany. Contoh kasusnya dalam implementasi tutorial ini adalah kita akan menggunakan FetchType.Lazy saat mau mengakses listkamar pada hotel, jadi kita hanya mengakses data yang dibutuhkan saja.
+**FetchType.LAZY** memiliki kegunaan yaitu untuk memuat beberapa collecton object (child) yang dibutuhkan saja saat object parent di fetch. Collection object (child) hanya dimuat jika secara eksplisit dibutuhkan via getter method. Dalam kata lain inisialisasi ini hanya melakukan fetch hanya ketika suatu data dibutuhkan. Tujuan inisialisasi ini adalah untuk meningkatkan *performance*, dimana dengan inisialiasi ini komputasi yang tidak terlalu dibutuhkan akan dihindari. Selain itu inisialisasi ini akan mengurangi *memory requirements*. Contoh kasusnya dalam implementasi tutorial ini adalah kita akan menggunakan FetchType.Lazy saat mau mengakses listkamar pada hotel, jadi kita hanya mengakses data yang dibutuhkan saja.
 
-**FetchType.EAGER** memiliki kegunaan yaitu untuk memuat semua collection object (child) sesaat setelah object parent di fetch. Dalam kata lain inisialisasi ini akan melakukan fetch secara bersamaan. Default fetching dari inialisasi ini adalah @OneToOne dan @ManyToOne. Contoh implementasinya pada tutorial 3 ini adalah saat kita ingin melihat keseluruhan hotel, dimana pastinya akan secara bersamaan datanya semuanya diakses.
+**FetchType.EAGER** memiliki kegunaan yaitu untuk memuat semua collection object (child) sesaat setelah object parent di fetch. Dalam kata lain inisialisasi ini akan melakukan fetch secara bersamaan. Contoh implementasinya pada tutorial 3 ini adalah saat kita ingin melihat keseluruhan hotel, dimana pastinya akan secara bersamaan datanya semuanya diakses.
 
 **CascadeType.ALL** memiliki kegunaan yaitu untuk memuat semua *actions* secara keseluruhan. Contohnya adalah ketika kita menghilangkan sebuah *parent*, maka tentu *child*-nya akan hilang juga.
 
