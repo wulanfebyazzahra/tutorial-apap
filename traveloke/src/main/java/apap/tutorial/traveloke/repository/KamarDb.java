@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface KamarDb extends JpaRepository<KamarModel, Long>{
     List<KamarModel> findByHotelId(Long hotelId);
     Optional<KamarModel> findById(Long noKamar);
+    List<KamarModel> findAllByNamaKamarAndKapasitasKamar(String namaKamar, Integer kapasitas);
 }
