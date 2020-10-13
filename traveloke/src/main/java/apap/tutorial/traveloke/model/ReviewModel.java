@@ -37,6 +37,7 @@ public class ReviewModel implements Serializable{
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private KamarModel kamar;
+    private List<KamarModel> listKamar;
 
     public Long getId() {
         return id;
