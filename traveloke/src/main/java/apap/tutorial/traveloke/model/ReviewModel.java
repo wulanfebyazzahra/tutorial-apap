@@ -1,5 +1,9 @@
 package apap.tutorial.traveloke.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,6 +34,9 @@ public class ReviewModel implements Serializable{
 
     @ManyToOne(fetch= FetchType.EAGER, optional = false)
     @JoinColumn(name= "kamarID", referencedColumnName = "noKamar", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private KamarModel kamar;
 
     public Long getId() {
         return id;
