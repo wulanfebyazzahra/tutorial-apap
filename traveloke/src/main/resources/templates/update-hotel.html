@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaaf.org">
 <head>
-    <title>Add Hotel</title>
+    <title>Updated Hotel</title>
 </head>
 <body>
-    <h2 th:text="'Nomor telepon dengan id Hotel ' + ${idHotel} + ' berhasil diubah menjadi ' + ${noTelepon}"></h2>
-    <a href="/hotel/viewall">Kembali</a>
+<h2 th:text="'Hotel dengan id Hotel ' + ${hotel.id} + ' berhasil diubah!'"></h2>
+<td><a th:href="@{/hotel/view/}+'?id='+${hotel.id}">View Hotel</a></td>
 </body>
 </html>

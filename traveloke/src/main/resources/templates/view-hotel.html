@@ -1,14 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <title>View Hotel</title>
 </head>
 <body>
-    <h2>Informasi Hotel</h2>
-    <h3 th:text="'Id Hotel: '+ ${hotel.idHotel}"></h3>
+<section>
+    <h2>Informasi Hotel </h2>
+    <h3 th:text="'ID hotel: '+ ${hotel.id}"></h3>
     <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
     <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
-    <h3 th:text="'Nomor Telepon: '+ ${hotel.noTelepon}"></h3>
-    <a href="/hotel/viewall">Kembali</a>
+    <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
+    <hr>
+</section>
+
+<span th:if="${listKamar.size() > 0}">
+<section>
+    <h2>Daftar Kamar:</h2>
+    <div th:each="kamar : ${listKamar}">
+        <h3 th:text="'No Kamar: '+ ${kamar.noKamar}"></h3>
+        <h3 th:text="'Nama Kamar: '+ ${kamar.namaKamar}"></h3>
+
+        <h3 th:if="${kamar.tipe == 0}">Tipe : Deluxe</h3>
+        <h3 th:if="${kamar.tipe == 1}">Tipe : Executive</h3>
+        <h3 th:if="${kamar.tipe == 2}">Tipe : President Suite</h3>
+
+        <h3 th:text="'Kapasitas Kamar: '+ ${kamar.kapasitasKamar}"></h3>
+        <td><a th:href="@{/kamar/change/}+${kamar.noKamar}">Change Data Kamar</a></td>
+        <td><a th:href="@{/kamar/delete/}+${kamar.noKamar}">Delete Kamar</a></td>
+        <hr>
+    </div>
+</section>
+</span>
+
+<span th:unless="${listKamar.size() > 0}">
+        <h2>Hotel ini belum memiliki daftar kamar</h2>
+</span>
+<td><a th:href="@{/kamar/add/}+${hotel.id}">Add Kamar</a></td>
+<br>
+<td><a th:href="@{/hotel/change/}+${hotel.id}">Update Hotel</a></td>
+<br>
+<td><a th:href="@{/hotel/delete/}+${hotel.id}">Delete Hotel</a></td>
+<br>
+<a href="/hotel/viewall">Kembali</a>
 </body>
 </html>
