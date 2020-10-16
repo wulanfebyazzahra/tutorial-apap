@@ -8,15 +8,21 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar('View Hotel')"></nav>
 
-<section>
+    <div class="card">
+    <section>
         <h2 id="judul">Informasi Hotel </h2>
         <h3 th:text="'ID hotel: '+ ${hotel.id}"></h3>
         <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
         <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
         <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
-        <hr>
     </section>
+    </div>
+    <td>
+    <a th:href="@{/hotel/change/}+${hotel.id}" class="btn btn-primary">Update Hotel</a>
+    <a th:href="@{/hotel/delete/}+${hotel.id}" class="btn btn-primary">Delete Hotel</a>
+    </td>
 
+    <div class="card">
     <section>
         <h2>Daftar Kamar:</h2>
         <div th:if="${hasKamar}">
@@ -60,14 +66,9 @@
         <div th:unless="${hasKamar}">
             <h2>Hotel belum memiliki daftar kamar</h2>
         </div>
-        <td><a th:href="@{/kamar/add/}+${hotel.id}">Add Kamar</a></td>
+        <td><a th:href="@{/kamar/add/}+${hotel.id}" class="btn btn-primary">Add Kamar</a></td>
     </section>
-
-    <br>
-    <td><a th:href="@{/hotel/change/}+${hotel.id}">Update Hotel</a></td>
-    <br>
-    <td><a th:href="@{/hotel/delete/}+${hotel.id}">Delete Hotel</a></td>
-    <br>
+    </div>
     <a href="/hotel/viewall">Kembali</a>
 </body>
 </html>
