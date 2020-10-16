@@ -155,10 +155,15 @@ JPA Repository merupakan sebuah modul dari JPA yang berisi *namespace custom*, m
 
 1. Jelaskan perbedaan th:include dan th:replace!
 **Jawab**:
+Pada dasarnya th:include dan th:replace merupakan suatu bentuk dari host tag. Tujuannya adalah untuk mengimplementasi fragment Thymeleaf. Fragment pada Thymeleaf merupakan suatu potongan kode yang dapat diimplementasikan ke beberapa template.
 
+th:include akan memasukkan konten fragment ke host tag, namun yang dimasukkan hanya konten yang dispesifikasikan saja.
+
+th:replace akan menggantikan host tag dengan konten fragment yang spesifik
 
 2. Jelaskan apa fungsi dari th:object!
 **Jawab**:
+Fungsi dari th:object adalah untuk menspesifikasi objek dimana form yang di submit akan terikat.
 
 
 3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
@@ -170,3 +175,5 @@ Penggunaan * dan $ dua-duanya sama-sama digunakan untuk melakukan suatu variable
 Untuk menyelesaikan latihan nomor 3, yang saya lakukan adalah mengubah bagian fragment.html, dimana disana saya menambahkan parameter pagename. Lalu nanti pada setiap navbar dipage html, saya memasukan nama pagename sesuai dengan halamannya contohnya adalah pada html tambah kamar: <nav th:replace="fragments/fragment :: navbar ('Add Kamar')"></nav>
 
 ### Sources:
+ - https://attacomsian.com/blog/thymeleaf-fragments#:~:text=A%20fragment%20in%20Thymeleaf%20is,repeated%20used%20on%20multiple%20pages.
+ - https://www.baeldung.com/thymeleaf-in-spring-mvc#:~:text=Handling%20User%20Input&text=The%20th%3Aaction%20is%20used,matching%20property%20of%20the%20object.

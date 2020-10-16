@@ -68,18 +68,14 @@ public class HotelController{
             @RequestParam(value = "id") Long id,
             Model model
     ){
-//        try {
             HotelModel hotel = hotelService.getHotelByIdHotel(id);
             List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(id);
             boolean hasKamar = listKamar.size() > 0;
-
             model.addAttribute("hotel", hotel);
             model.addAttribute("hasKamar", hasKamar);
             model.addAttribute("listKamar", listKamar);
             return "view-hotel";
-//        }catch (Exception e){
-//            return "hotel-null";
-//        }
+
     }
 
     @GetMapping("/hotel/viewall")

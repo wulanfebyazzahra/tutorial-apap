@@ -42,36 +42,6 @@ public class KamarController {
 //        return "add-kamar";
 //    }
 
-    @GetMapping("/kamar/change/{noKamar}")
-    public String updateKamarFormPage(
-            @PathVariable Long noKamar, Model model){
-        KamarModel kamar = kamarService.getNomorkamar(noKamar);
-        model.addAttribute("kamar", kamar);
-        return "form-update-kamar";
-    }
-
-    @PostMapping("/kamar/change")
-    public String changeKamarFormSubmit(
-            @ModelAttribute KamarModel kamar, Model model){
-        KamarModel kamarUpdated = kamarService.updateKamar(kamar);
-        model.addAttribute("kamar", kamar);
-        return "update-kamar";
-    }
-
-    @PostMapping(path = "/kamar/delete")
-    public String deleteKamarFormSubmit(
-            @ModelAttribute HotelModel hotel,
-            Model model
-    ){
-        model.addAttribute("kamarCount", hotel.getListKamar().size());
-
-        for(KamarModel kamar : hotel.getListKamar()){
-            kamarService.deleteKamar(kamar);
-        }
-
-        return "delete-kamar";
-    }
-
     @GetMapping({"/kamar/add/{id}"})
     private String addRow(@PathVariable Optional<Long> id, Model model) {
         HotelModel hotel;
@@ -107,10 +77,40 @@ public class KamarController {
 
     @PostMapping(value = "/kamar/add", params = {"delete"})
     private String deleteRow(@ModelAttribute HotelModel hotel, final HttpServletRequest req,
-                                             Model model) {
+                             Model model) {
         int row = Integer.valueOf(req.getParameter("delete"));
         hotel.getListKamar().remove(row);
         model.addAttribute("hotel", hotel);
         return "form-add-kamar";
+    }
+
+    @GetMapping("/kamar/change/{noKamar}")
+    public String updateKamarFormPage(
+            @PathVariable Long noKamar, Model model){
+        KamarModel kamar = kamarService.getNomorkamar(noKamar);
+        model.addAttribute("kamar", kamar);
+        return "form-update-kamar";
+    }
+
+    @PostMapping("/kamar/change")
+    public String changeKamarFormSubmit(
+            @ModelAttribute KamarModel kamar, Model model){
+        KamarModel kamarUpdated = kamarService.updateKamar(kamar);
+        model.addAttribute("kamar", kamar);
+        return "update-kamar";
+    }
+
+    @PostMapping(path = "/kamar/delete")
+    public String deleteKamarFormSubmit(
+            @ModelAttribute HotelModel hotel,
+            Model model
+    ){
+        model.addAttribute("kamarCount", hotel.getListKamar().size());
+
+        for(KamarModel kamar : hotel.getListKamar()){
+            kamarService.deleteKamar(kamar);
+        }
+
+        return "delete-kamar";
     }
 }
