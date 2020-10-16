@@ -3,20 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+
 <body>
-    <h1>Selamat Datang di Traveloke!</h1>
-    <h3>Tambah Hotel</h3>
-    <td><a href="/hotel/add">Tambah Hotel</a></td>
-    <br>
-    <h3>Cari Hotel Berdasarkan ID</h3>
-    <form th:action="@{/hotel/view}" method = "GET">
-        Id Hotel : <br>
-        <input type="text" name="id"/>
-        <button type = "submit">Cari</button>
-    </form>
-    <br>
-    <h3>View All Hotel</h3>
-    <a href="/hotel/viewall">View All Hotel</a>
+    <nav th:replace = "fragments/fragment :: navbar('Home')"></nav>
+    <div class="container-fluid">
+        <h3 id="judul">Selamat Datang di Traveloke!</h3>
+        <a th:href="@{/hotel/viewall}" class="btn btn-primary">View All Hotel</a>
+        <a th:href="@{/hotel/add}" class="btn btn-outline-primary">Tambah Hotel</a>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Cari Hotel Berdasarkan ID Hotel</div>
+                    <div class="card-body">
+                        <form th:action="@{/hotel/view}" method="GET">
+                            <div class="form-row">
+                                <div class="col-10">
+                                    <input id="id" type="text" name="id" class="form-control" placeholder="ID Hotel">
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-primary btn-block"> Cari </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

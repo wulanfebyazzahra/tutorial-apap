@@ -2,9 +2,15 @@
 <html lang="en" xmlns:th="http://thymeleaaf.org">
 <head>
     <title>Hotel Tidak Bisa Dihapus!</title>
+    <title>Add Kamar</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+
 <body>
-<h2>Hotel tidak dapat dihapus karena memiliki kamar</h2>
-<a href="/hotel/viewall">View All Hotel</a>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <h2>Hotel tidak dapat dihapus karena memiliki kamar</h2>
+    <a href="/hotel/viewall">View All Hotel</a>
 </body>
 </html>

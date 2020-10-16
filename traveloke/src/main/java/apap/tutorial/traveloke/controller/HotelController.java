@@ -44,14 +44,14 @@ public class HotelController{
     public String changeHotelFormPage(
             @PathVariable Long id,
             Model model){
-        try{
+//        try{
             HotelModel hotel = hotelService.getHotelByIdHotel(id);
             model.addAttribute("hotel", hotel);
             return "form-update-hotel";
-        }
-        catch (Exception e){
-            return "hotel-null";
-        }
+//        }
+//        catch (Exception e){
+//            return "hotel-null";
+//        }
     }
 
     @PostMapping("/hotel/change")
@@ -66,17 +66,20 @@ public class HotelController{
     @GetMapping("/hotel/view")
     public String viewDetailHotel(
             @RequestParam(value = "id") Long id,
-            Model model){
-        try {
-            List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(id);
+            Model model
+    ){
+//        try {
             HotelModel hotel = hotelService.getHotelByIdHotel(id);
+            List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(id);
+            boolean hasKamar = listKamar.size() > 0;
+
             model.addAttribute("hotel", hotel);
+            model.addAttribute("hasKamar", hasKamar);
             model.addAttribute("listKamar", listKamar);
             return "view-hotel";
-        }
-        catch (Exception e){
-            return "hotel-null";
-        }
+//        }catch (Exception e){
+//            return "hotel-null";
+//        }
     }
 
     @GetMapping("/hotel/viewall")
@@ -90,7 +93,7 @@ public class HotelController{
     public String DeletePathVariable(
             @PathVariable(value = "id") Long id,
             Model model){
-        try{
+//        try{
             HotelModel hotel = hotelService.getHotelByIdHotel(id);
             List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(id);
             if (listKamar.isEmpty()) {
@@ -101,9 +104,9 @@ public class HotelController{
             else{
                 return "warning";
             }
-        }
-        catch (Exception e){
-            return "hotel-null";
-        }
+//        }
+//        catch (Exception e){
+//            return "hotel-null";
+//        }
     }
 }

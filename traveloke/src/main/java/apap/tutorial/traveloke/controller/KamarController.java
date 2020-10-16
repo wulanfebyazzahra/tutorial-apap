@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import java.util.List;
 
 @Controller
 public class KamarController {
@@ -55,12 +54,17 @@ public class KamarController {
         return "update-kamar";
     }
 
-    @GetMapping(value = "/kamar/delete/{noKamar}")
-    public String DeletePathVariable(
-            @PathVariable(value = "noKamar") Long noKamar,
-            Model model){
-        List<KamarModel> kamar = kamarService.deleteKamar(noKamar);
-        model.addAttribute("kamar", kamar);
+    @PostMapping(path = "/kamar/delete")
+    public String deleteKamarFormSubmit(
+            @ModelAttribute HotelModel hotel,
+            Model model
+    ){
+        model.addAttribute("kamarCount", hotel.getListKamar().size());
+
+        for(KamarModel kamar : hotel.getListKamar()){
+            kamarService.deleteKamar(kamar);
+        }
+
         return "delete-kamar";
     }
 }
