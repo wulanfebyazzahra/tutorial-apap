@@ -9,8 +9,8 @@
 
 <body>
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
-    <h2>Hotel tidak dapat dihapus karena memiliki kamar</h2>
+    <nav th:replace="fragments/fragment :: navbar('Warning')"></nav>
+    <h2 id="judul">Hotel tidak dapat dihapus karena memiliki kamar</h2>
     <a href="/hotel/viewall">View All Hotel</a>
 </body>
 </html>

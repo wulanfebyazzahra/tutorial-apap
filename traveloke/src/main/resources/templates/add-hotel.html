@@ -6,8 +6,8 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
-    <h2 th:text="'Hotel dengan id Hotel ' + ${id} + ' berhasil ditambahkan!'"></h2>
+    <nav th:replace="fragments/fragment :: navbar('Add Hotel')"></nav>
+    <h2 id="judul" th:text="'Hotel dengan id Hotel ' + ${id} + ' berhasil ditambahkan!'"></h2>
     <a href="/hotel/viewall">View All Hotel</a>
 </body>
 </html>

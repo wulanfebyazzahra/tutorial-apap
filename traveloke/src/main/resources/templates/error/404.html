@@ -8,7 +8,7 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
-<h2>Halaman tidak ditemukan</h2>
+<nav th:replace="fragments/fragment :: navbar('Server Error')"></nav>
+<h2 id="judul">Halaman tidak ditemukan</h2>
 </body>
 </html>

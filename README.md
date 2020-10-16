@@ -149,3 +149,24 @@ JPA Repository merupakan sebuah modul dari JPA yang berisi *namespace custom*, m
  - https://docs.spring.io/spring-data/jpa/docs/1.3.4.RELEASE/reference/html/jpa.repositories.html
  - https://www.baeldung.com/jpa-join-column
 
+
+---
+## Tutorial 4
+
+1. Jelaskan perbedaan th:include dan th:replace!
+**Jawab**:
+
+
+2. Jelaskan apa fungsi dari th:object!
+**Jawab**:
+
+
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+**Jawab**:
+Penggunaan * dan $ dua-duanya sama-sama digunakan untuk melakukan suatu variable expression. Letak perbedaannya adalah * akan digunakan untuk melakukan expression pada suatu selected object. 
+
+4. Bagaimana kamu menyelesaikan latihan nomor 3?
+**Jawab**:
+Untuk menyelesaikan latihan nomor 3, yang saya lakukan adalah mengubah bagian fragment.html, dimana disana saya menambahkan parameter pagename. Lalu nanti pada setiap navbar dipage html, saya memasukan nama pagename sesuai dengan halamannya contohnya adalah pada html tambah kamar: <nav th:replace="fragments/fragment :: navbar ('Add Kamar')"></nav>
+
+### Sources:

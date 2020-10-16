@@ -8,8 +8,8 @@
 </head>
 
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
-    <h2 th:text="'Hotel dengan id Hotel ' + ${hotel.id} + ' berhasil diubah!'"></h2>
+    <nav th:replace="fragments/fragment :: navbar('Update Kamar')"></nav>
+    <h2 id="judul" th:text="'Hotel dengan id Hotel ' + ${hotel.id} + ' berhasil diubah!'"></h2>
     <td><a th:href="@{/hotel/view/}+'?id='+${hotel.id}">View Hotel</a></td>
 </body>
 </html>
