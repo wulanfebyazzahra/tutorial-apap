@@ -31,3 +31,12 @@
     </div>
     <h6 th:text = "${pagename}"></h6>
 </nav>
+
+<footer th:fragment="footer">
+    <p>Made with Love by Wulan -
+        <span th:text="${#dates.format(#dates.createNow(), 'dd/MMM/yyyy HH:mm')}"></span>
+    </p>
+</footer>
+
+</body>
+</html>
