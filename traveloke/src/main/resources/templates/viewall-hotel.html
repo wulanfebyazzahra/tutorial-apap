@@ -2,16 +2,47 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <title>View All Hotel</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+
 <body>
-<h2>Daftar Seluruh Hotel</h2>
-<div th:each="hotel: ${hotel}">
-    <h3 th:text="'Id Hotel: '+ ${hotel.id}"></h3>
-    <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
-    <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
-    <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
-    <td><a th:href="@{/hotel/view/}+'?id='+${hotel.id}">Detail Hotel</a></td>
-    <hr>
-</div>
+    <nav th:replace="fragments/fragment :: navbar('View All Hotel')"></nav>
+    <div class="container-fluid">
+        <h2 id = "judul">Daftar Seluruh Hotel</h2>
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id hotel</th>
+                            <th>Nama Hotel</th>
+                            <th>Alamat Hotel</th>
+                            <th>Nomor telepon</th>
+                            <th>Aksi</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <thread>
+                        <tr th:each="hotel: ${hotel}">
+                            <td th:text="${hotel.id}"></td>
+                            <td th:text="${hotel.namaHotel}"></td>
+                            <td th:text="${hotel.alamat}"></td>
+                            <td th:text="${hotel.nomorTelepon}"></td>
+                            <td>
+                                <a th:href="@{/hotel/view/}+'?id='+${hotel.id}" class="btn btn-outline-primary">Detail</a>
+                                <a th:href="@{/hotel/change/}+${hotel.id}" class="btn btn-outline-primary">Update</a>
+                                <a th:href="@{/hotel/delete/}+${hotel.id}" class="btn btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    </thread>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+

@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
 public class KamarController {
@@ -23,20 +26,62 @@ public class KamarController {
     @Autowired
     private KamarService kamarService;
 
-    @GetMapping("/kamar/add/{id}")
-    private String addKamarFormPage(@PathVariable Long id, Model model){
-        KamarModel kamar = new KamarModel();
-        HotelModel hotel = hotelService.getHotelByIdHotel(id);
-        kamar.setHotel(hotel);
-        model.addAttribute("kamar", kamar);
+//    @GetMapping("/kamar/add/{id}")
+//    private String addKamarFormPage(@PathVariable Long id, Model model){
+//        KamarModel kamar = new KamarModel();
+//        HotelModel hotel = hotelService.getHotelByIdHotel(id);
+//        kamar.setHotel(hotel);
+//        model.addAttribute("kamar", kamar);
+//        return "form-add-kamar";
+//    }
+
+//    @PostMapping("/kamar/add")
+//    private String addKamarSubmit(@ModelAttribute KamarModel kamar, Model model){
+//        kamarService.addKamar(kamar);
+//        model.addAttribute("kamar", kamar);
+//        return "add-kamar";
+//    }
+
+    @GetMapping({"/kamar/add/{id}"})
+    private String addRow(@PathVariable Optional<Long> id, Model model) {
+        HotelModel hotel;
+        hotel = hotelService.getHotelByIdHotel(id.get());
+        ArrayList<KamarModel> temp = new ArrayList<KamarModel>();
+        temp.add(new KamarModel());
+        hotel.setListKamar(temp);
+        model.addAttribute("hotel", hotel);
         return "form-add-kamar";
     }
 
-    @PostMapping("/kamar/add")
-    private String addKamarSubmit(@ModelAttribute KamarModel kamar, Model model){
-        kamarService.addKamar(kamar);
-        model.addAttribute("kamar", kamar);
+    @PostMapping(value = "/kamar/add", params = {"simpan"})
+    private String postAddRow(@ModelAttribute HotelModel hotel, Model model) {
+
+        for (KamarModel kamar : hotel.getListKamar()) {
+            kamar.setHotel(hotel);
+            kamarService.addKamar(kamar);
+        }
+        int jumlahKamar = hotel.getListKamar().size();
+        model.addAttribute("jumlahKamar", jumlahKamar);
         return "add-kamar";
+    }
+
+    @PostMapping(value="/kamar/add", params = {"add"})
+    private String AddRowSubmit(@ModelAttribute HotelModel hotel, Model model){
+        if(hotel.getListKamar() == null || hotel.getListKamar().size() == 0){
+            hotel.setListKamar(new ArrayList<KamarModel>());
+        }
+        hotel.getListKamar().add(new KamarModel());
+        model.addAttribute("hotel", hotel);
+        return "form-add-kamar";
+    }
+
+    @PostMapping(value = "/kamar/add", params = {"delete"})
+    private String deleteRow(@ModelAttribute HotelModel hotel, final HttpServletRequest req,
+                             Model model) {
+        int row = Integer.valueOf(req.getParameter("delete"));
+        hotel.getListKamar().remove(row);
+        model.addAttribute("hotel", hotel);
+        return "form-add-kamar";
     }
 
     @GetMapping("/kamar/change/{noKamar}")
@@ -55,12 +100,17 @@ public class KamarController {
         return "update-kamar";
     }
 
-    @GetMapping(value = "/kamar/delete/{noKamar}")
-    public String DeletePathVariable(
-            @PathVariable(value = "noKamar") Long noKamar,
-            Model model){
-        List<KamarModel> kamar = kamarService.deleteKamar(noKamar);
-        model.addAttribute("kamar", kamar);
+    @PostMapping(path = "/kamar/delete")
+    public String deleteKamarFormSubmit(
+            @ModelAttribute HotelModel hotel,
+            Model model
+    ){
+        model.addAttribute("kamarCount", hotel.getListKamar().size());
+
+        for(KamarModel kamar : hotel.getListKamar()){
+            kamarService.deleteKamar(kamar);
+        }
+
         return "delete-kamar";
     }
 }

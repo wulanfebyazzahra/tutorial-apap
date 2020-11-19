@@ -21,10 +21,14 @@ public class KamarServiceImpl implements KamarService{
     }
 
     @Override
+    public void deleteKamar(KamarModel kamar) {
+        kamarDb.delete(kamar);
+    }
+
+    @Override
     public List<KamarModel> findAllKamarByIdHotel(Long id) {
         return kamarDb.findByHotelId(id);
     }
-
 
     @Override
     public KamarModel updateKamar(KamarModel kamar){
@@ -44,11 +48,5 @@ public class KamarServiceImpl implements KamarService{
     @Override
     public KamarModel getNomorkamar(Long noKamar) {
         return kamarDb.findById(noKamar).get();
-    }
-
-    @Override
-    public List<KamarModel> deleteKamar(Long noKamar) {
-        kamarDb.deleteById(noKamar);
-        return null;
     }
 }

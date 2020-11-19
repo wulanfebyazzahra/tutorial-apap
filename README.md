@@ -149,3 +149,35 @@ JPA Repository merupakan sebuah modul dari JPA yang berisi *namespace custom*, m
  - https://docs.spring.io/spring-data/jpa/docs/1.3.4.RELEASE/reference/html/jpa.repositories.html
  - https://www.baeldung.com/jpa-join-column
 
+
+---
+## Tutorial 4
+
+1. Jelaskan perbedaan th:include dan th:replace!
+
+**Jawab**:
+Pada dasarnya th:include dan th:replace merupakan suatu bentuk dari host tag. Tujuannya adalah untuk mengimplementasi fragment Thymeleaf. Fragment pada Thymeleaf merupakan suatu potongan kode yang dapat diimplementasikan ke beberapa template.
+
+th:include akan memasukkan konten fragment ke host tag, namun yang dimasukkan hanya konten yang dispesifikasikan saja. th:replace tidak akan memasukkan konten fragment yang atributnya th:fragment.
+
+th:replace akan menggantikan host tag dengan konten fragment yang spesifik. th:replace akan memasukkan konten fragment yang atributnya th:fragment.
+
+2. Jelaskan apa fungsi dari th:object!
+
+**Jawab**:
+Fungsi dari th:object adalah untuk menspesifikasi objek yang terikat dengan data pada suatu form.
+
+
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+
+**Jawab**:
+Pada dasarnya penggunaan * dan $ keduaya sama-sama digunakan untuk melakukan *variable expression*. Perbedaannya adalah $ digunakan ketika akan melakukan *expression* pada keseluruhan atribut dari th:object. Sedangkan * akan digunakan untuk melakukan *expression* pada suatu atribut spesifik dari th:object.
+
+4. Bagaimana kamu menyelesaikan latihan nomor 3?
+
+**Jawab**:
+Untuk menyelesaikan latihan nomor 3, yang saya lakukan adalah menambahkan bagian fragment.html, disana saya menambahkan atribut th:text = "${pagename}" pada elemen dari HTML-nya. Lalu nanti pada setiap templates di navbarnya saya akan mengimplementasikan fragment dengan memasukan nama pagename sesuai dengan halamannya.
+
+### Sources:
+ - https://attacomsian.com/blog/thymeleaf-fragments#:~:text=A%20fragment%20in%20Thymeleaf%20is,repeated%20used%20on%20multiple%20pages.
+ - https://www.baeldung.com/thymeleaf-in-spring-mvc#:~:text=Handling%20User%20Input&text=The%20th%3Aaction%20is%20used,matching%20property%20of%20the%20object.

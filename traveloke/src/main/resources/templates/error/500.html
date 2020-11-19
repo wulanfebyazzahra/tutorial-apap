@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <title>Updated Kamar</title>
+    <meta charset="UTF-8">
+    <title>500 Internal Server Error</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-
 <body>
-    <nav th:replace="fragments/fragment :: navbar('Update Kamar')"></nav>
-    <h2 id="judul" th:text="'Kamar dengan nomor kamar ' + ${kamar.noKamar} + ' berhasil diubah!'"></h2>
+<nav th:replace="fragments/fragment :: navbar('Not Found')"></nav>
+<h2 id="judul">Ooops! Internal Server Error :(</h2>
 </body>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Add Kamar</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<h2 th:text="'Kamar dengan id kamar ' + ${kamar.noKamar} + ' berhasil ditambahkan!'"></h2>
-<a href="/hotel/viewall">View all Hotel</a>
+<nav th:replace="fragments/fragment :: navbar('Add Kamar')"></nav>
+    <h2 id="judul" th:text = "${jumlahKamar} + ' kamar berhasil ditambahkan'"></h2>
 </body>
 </html>

@@ -2,45 +2,75 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <title>View Hotel</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<section>
-    <h2>Informasi Hotel </h2>
-    <h3 th:text="'ID hotel: '+ ${hotel.id}"></h3>
-    <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
-    <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
-    <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
-    <hr>
-</section>
+<nav th:replace="fragments/fragment :: navbar('View Hotel')"></nav>
 
-<span th:if="${listKamar.size() > 0}">
-<section>
-    <h2>Daftar Kamar:</h2>
-    <div th:each="kamar : ${listKamar}">
-        <h3 th:text="'No Kamar: '+ ${kamar.noKamar}"></h3>
-        <h3 th:text="'Nama Kamar: '+ ${kamar.namaKamar}"></h3>
-
-        <h3 th:if="${kamar.tipe == 0}">Tipe : Deluxe</h3>
-        <h3 th:if="${kamar.tipe == 1}">Tipe : Executive</h3>
-        <h3 th:if="${kamar.tipe == 2}">Tipe : President Suite</h3>
-
-        <h3 th:text="'Kapasitas Kamar: '+ ${kamar.kapasitasKamar}"></h3>
-        <td><a th:href="@{/kamar/change/}+${kamar.noKamar}">Change Data Kamar</a></td>
-        <td><a th:href="@{/kamar/delete/}+${kamar.noKamar}">Delete Kamar</a></td>
-        <hr>
+    <div class="card">
+        <div class="card-header">Informasi Hotel</div>
+        <div class="card-body">
+        <h3 th:text="'ID hotel: '+ ${hotel.id}"></h3>
+        <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
+        <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
+        <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
+        </div>
     </div>
-</section>
-</span>
 
-<span th:unless="${listKamar.size() > 0}">
-        <h2>Hotel ini belum memiliki daftar kamar</h2>
-</span>
-<td><a th:href="@{/kamar/add/}+${hotel.id}">Add Kamar</a></td>
-<br>
-<td><a th:href="@{/hotel/change/}+${hotel.id}">Update Hotel</a></td>
-<br>
-<td><a th:href="@{/hotel/delete/}+${hotel.id}">Delete Hotel</a></td>
-<br>
-<a href="/hotel/viewall">Kembali</a>
+    <td>
+        <a th:href="@{/hotel/change/}+${hotel.id}" class="btn btn-primary">Update Hotel</a>
+        <a th:href="@{/hotel/delete/}+${hotel.id}" class="btn btn-primary">Delete Hotel</a>
+        <a th:href="@{/kamar/add/}+${hotel.id}" class="btn btn-primary">Add Kamar</a>
+    </td>
+
+    <div class="card">
+        <div class="card-header">Daftar Kamar:</div>
+        <div class="card-body">
+        <div th:if="${hasKamar}">
+            <form th:action="@{/kamar/delete}" th:object="${hotel}" method="POST">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>No Kamar</th>
+                            <th>Nama Kamar</th>
+                            <th>Tipe Kamar</th>
+                            <th>Kapasitas Kamar</th>
+                            <th>Aksi</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="kamar, iterationStatus : ${listKamar}">
+                            <td th:text="${iterationStatus.count}"></td>
+                            <td th:text="${kamar.noKamar}"></td>
+                            <td th:text="${kamar.namaKamar}"></td>
+
+                            <td>
+                                <div th:if="${kamar.tipe == 0}">Tipe : Deluxe</div>
+                                <div th:if="${kamar.tipe == 1}">Tipe : Executive</div>
+                                <div th:if="${kamar.tipe == 2}">Tipe : President Suite</div>
+                            </td>
+
+                            <td th:text="${kamar.kapasitasKamar}"></td>
+                            <td>
+                                <a th:href="@{/kamar/change/}+${kamar.noKamar}" class="btn btn-primary">Change Data Kamar</a>
+                                <input type="checkbox" th:field="*{listKamar}" th:value="${kamar.noKamar}"/>
+                                <label th:for="${#ids.prev('listKamar')}">Hapus</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-sm btn-danger">Hapus yang dipilih</button>
+            </form>
+        </div>
+        <div th:unless="${hasKamar}">
+            <h2>Hotel belum memiliki daftar kamar</h2>
+        </div>
+        </div>
+    </div>
+    </div>
+    <a href="/hotel/viewall">Kembali</a>
 </body>
 </html>
