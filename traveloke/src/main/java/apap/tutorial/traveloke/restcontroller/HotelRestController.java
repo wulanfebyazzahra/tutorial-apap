@@ -26,6 +26,7 @@ public class HotelRestController {
     @Autowired
     private APIRestService apiRestService;
 
+    // Create Hotel
     @PostMapping(value = "/hotel")
     private HotelModel createHotel(@Valid  @RequestBody HotelModel hotel, BindingResult bindingResult){
         if (bindingResult.hasFieldErrors()){
@@ -38,6 +39,7 @@ public class HotelRestController {
         }
     }
 
+    // Read Hotel
     @GetMapping(value = "/hotel/{id}")
     private HotelModel retrieveHotel(@PathVariable("id") Long id){
         try{
@@ -50,6 +52,12 @@ public class HotelRestController {
         }
     }
 
+    @GetMapping(value = "/hotels")
+    private List<HotelModel> retrieveListHotel() {
+        return hotelRestService.retrieveListHotel();
+    }
+
+    // Delete Hotel
     @DeleteMapping(value = "/hotel/{id}")
     private ResponseEntity<String> deleteHotel(@PathVariable("id") Long id){
         try{
@@ -66,6 +74,7 @@ public class HotelRestController {
         }
     }
 
+    // Update Hotel
     @PutMapping(value = "/hotel/{id}")
     private HotelModel updateHotel(
             @PathVariable(value = "id") Long id,
@@ -81,20 +90,19 @@ public class HotelRestController {
         }
     }
 
-    @GetMapping(value = "/hotels")
-    private List<HotelModel> retrieveListHotel() {
-        return hotelRestService.retrieveListHotel();}
-
+    // Get Status
     @GetMapping(value = "/hotel/{id}/status")
     private Mono<String> getStatus(@PathVariable Long id){
         return hotelRestService.getStatus(id);
     }
 
+    // Post Status
     @GetMapping(value = "/full")
     private Mono<HotelDetail> postStatus() {
         return hotelRestService.postStatus();
     }
 
+    // Find City
     @GetMapping(value="/hotel/find")
     private Mono<String> findCity(@RequestParam String cityName){
         return apiRestService.findCity(cityName);

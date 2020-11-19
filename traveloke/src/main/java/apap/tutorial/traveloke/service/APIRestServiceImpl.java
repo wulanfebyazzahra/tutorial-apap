@@ -1,4 +1,5 @@
 package apap.tutorial.traveloke.service;
+
 import apap.tutorial.traveloke.repository.HotelDb;
 import apap.tutorial.traveloke.rest.Setting;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -209,7 +209,8 @@ Postman merupakan sebuah aplikasi yang berfungsi sebagai REST Client untuk melak
 
 3. Apa kegunaan atribut WebClient?
 **Jawab**:
-WebClient adalah higher-level abstraction dari HttpWebRequest untuk mempermudah operasi seperti Create, Read, Update, dan Delete. 
+WebClient adalah higher-level abstraction dari HttpWebRequest yang disediakan oleh Spring Framework untuk mempermudah operasi seperti Create, Read, Update, dan Delete. Fungsi utamanya adalah untuk menginstansi sebuah akses poin URL dan juga akan mengelola request serta response dari URL tersebut.
+
 
 4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
 **Jawab**:

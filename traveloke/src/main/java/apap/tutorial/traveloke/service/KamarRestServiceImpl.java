@@ -17,11 +17,13 @@ public class KamarRestServiceImpl implements KamarRestService {
     @Autowired
     private KamarDb kamarDb;
 
+    // Create Kamar
     @Override
     public KamarModel createKamar(KamarModel kamar) {
         return kamarDb.save(kamar);
     }
 
+    // Read Kamar
     @Override
     public List<KamarModel> retrieveListKamar() {
         return kamarDb.findAll();
@@ -37,12 +39,14 @@ public class KamarRestServiceImpl implements KamarRestService {
         }
     }
 
+    // Delete Kamar
     @Override
     public void deleteKamar(Long noKamar) {
         KamarModel kamar = getKamarByIdKamar(noKamar);
         kamarDb.delete(kamar);
     }
 
+    // Update Kamar
     @Override
     public KamarModel changeKamar(Long noKamar, KamarModel kamarUpdate) {
         KamarModel kamar = getKamarByIdKamar(noKamar);

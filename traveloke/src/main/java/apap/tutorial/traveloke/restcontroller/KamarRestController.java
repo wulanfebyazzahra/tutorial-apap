@@ -21,7 +21,8 @@ public class KamarRestController {
     private KamarRestService kamarRestService;
     @Autowired
     private HotelService hotelService;
-    
+
+    // Create Kamar
     @PostMapping(value = "/kamar")
     private ResponseEntity<String> createKamar(@Valid @RequestBody KamarModel kamar, BindingResult bindingResult){
         if(bindingResult.hasFieldErrors()){
@@ -35,6 +36,7 @@ public class KamarRestController {
         }
     }
 
+    // Read Kamar
     @GetMapping(value = "/kamar/{noKamar}")
     private KamarModel retrieveKamar(@PathVariable("noKamar") Long noKamar){
         try{
@@ -46,6 +48,10 @@ public class KamarRestController {
         }
     }
 
+    @GetMapping(value = "/kamar-all")
+    private List<KamarModel> retrieveListKamar(){return kamarRestService.retrieveListKamar();}
+
+    // Delete Kamar
     @DeleteMapping(value = "/kamar/{noKamar}")
     private ResponseEntity<String> deleteKamar(@PathVariable("noKamar") Long noKamar){
         try{
@@ -57,6 +63,7 @@ public class KamarRestController {
         }
     }
 
+    // Update Kamar
     @PutMapping(value = "/kamar/{noKamar}")
     private ResponseEntity<String> updateKamar(
             @PathVariable(value = "noKamar") Long noKamar,
@@ -71,8 +78,4 @@ public class KamarRestController {
             );
         }
     }
-
-    @GetMapping(value = "/kamar-all")
-    private List<KamarModel> retrieveListKamar(){return kamarRestService.retrieveListKamar();}
-
 }
