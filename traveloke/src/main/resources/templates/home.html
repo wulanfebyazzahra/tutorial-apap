@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -9,7 +9,9 @@
 
 <body>
     <nav th:replace = "fragments/fragment :: navbar('Home')"></nav>
+
     <div class="container-fluid">
+        <h3 th:text=" 'Hello ' + ${#httpServletRequest.remoteUser} + ' !'">Login as</h3>
         <h3 id="judul">Selamat Datang di Traveloke!</h3>
         <a th:href="@{/hotel/viewall}" class="btn btn-primary">View All Hotel</a>
         <a th:href="@{/hotel/add}" class="btn btn-outline-primary">Tambah Hotel</a>
@@ -30,6 +32,59 @@
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div sec:authorize="hasAuthority('ADMIN')">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">Tambah User Baru</div>
+                        <div class = "card-body">
+                            <form th:action="@{/user/addUser}" method="POST">
+                                <label>User Name</label>
+                                <input type="text" name="username" class="form-control" />
+
+                                <label>Password</label>
+                                <input type="password" name="password" class="form-control">
+
+                                <label>Role</label>
+                                <select name="role" class="form-control">
+                                    <option selected value=""> -- Pilih Role --</option>
+                                    <option th:each="role : ${listRole}" th:value="${role.id}" th:text="${role.role}"></option>
+                                </select>
+
+                                <br>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </form>
+                            <h5 th:text="${mes}"></h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Update Password</div>
+                <div class="card-body">
+                    <form th:action="@{/user/updatePassword}" method="POST">
+                        <input type="hidden" th:value="${#httpServletRequest.userPrincipal.name}" name="username">
+
+                        <label>Password Lama</label>
+                        <input type="password" name="lama" class="form-control"/>
+
+                        <label>Password Baru</label>
+                        <input type="password" name="baru" class="form-control"/>
+
+                        <label>Konfirmasi Password Baru</label>
+                        <input type="password" name="confirmed" class="form-control"/>
+
+                        <br>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </form>
                 </div>
             </div>
         </div>

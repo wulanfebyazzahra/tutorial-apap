@@ -224,3 +224,25 @@ WebClient adalah higher-level abstraction dari HttpWebRequest yang disediakan ol
  - https://www.baeldung.com/spring-response-entity
  - https://stackoverflow.com/questions/10413886/what-is-the-use-of-bindingresult-interface-in-spring-mvc#:~:text=%5B%20BindingResult%20%5D%20is%20Spring's%20object%20that,object%20and%20throw%20an%20exception.w
 
+---
+## Tutorial 6
+
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda
+buat) konsep tersebut diimplementasi?
+**Jawab**:
+
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerja dan tujuannya.
+**Jawab**:
+
+
+3. Jelaskan secara singkat apa itu UUID beserta penggunaannya!
+**Jawab**:
+
+
+4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah
+memiliki class UserRoleServiceImpl.java?
+**Jawab**:
+
+
+### Sources:
