@@ -181,3 +181,46 @@ Untuk menyelesaikan latihan nomor 3, yang saya lakukan adalah menambahkan bagian
 ### Sources:
  - https://attacomsian.com/blog/thymeleaf-fragments#:~:text=A%20fragment%20in%20Thymeleaf%20is,repeated%20used%20on%20multiple%20pages.
  - https://www.baeldung.com/thymeleaf-in-spring-mvc#:~:text=Handling%20User%20Input&text=The%20th%3Aaction%20is%20used,matching%20property%20of%20the%20object.
+
+ ---
+## Tutorial 5
+
+1. Apa itu Postman? Apa kegunaannya?
+
+**Jawab**:
+Postman merupakan sebuah aplikasi yang berfungsi sebagai REST Client untuk melakukan uji REST API. Postman juga merupakan *tool* yang digunakan untuk melakukan proses development API, dimana biasanya akan digunakan oleh developer sebagai *tools* untuk menguji API yang telah dibuat. Ada pun beberapa kegunaan dari Postman, yaitu:
+
+ - **Collection**: Pengelompokan request API yang bisa disimpan atau diatur dalam bentuk folder.
+ - **Environment**: Config untuk menyimpan attribute dan attribute tersebut dapat digunakan ataupun dimanipulasi dalam proses request API.
+ - **Response**: Dengan menggunakan response developer dapat membuat Mockup API sebelum benar-benar mengimplementasikan ke dalam proyek.
+ - **Mock Server**: Dengan menggunakan fitur ini mockup API yang dibuat menggunakan fitur “example response” dapat diakses dari internet selayaknya Mockup API tersebut sudah di implementasikan dan di deploy ke server.
+ - **Script Test**: Fitur untuk melakukan validasi respon, selain itu di dalamnya dapat menuliskan test sesuai dengan kebutuhan.
+ - **Automated Test**: Dengan menggunakan *script test*, request dalam satu collection dapat dijalankan secara otomatis.
+
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty.
+
+**Jawab**:
+ - Fungsi dari @JsonIgnoreProperties adalah untuk mengabaikan properti logika pada serialisasi dan deserialiasi JSON. @JsonIgnoreProperties memiliki elemen allowGetters, allowSetters, ignoreUnkown, dan value. Elemen ini memiliki fungsi untuk menentukan nama properti yang akan diabaikan pada kelas.
+
+ - Fungsi dari @JsonProperty adalah untuk memetakan nama properti dengan kunci JSON selama serialisasi dan deserialisasi. @JsonProperty dapat digunakan pada kondisi saat deserialisasi dimana nama properti JSON dan nama field dari objek Java tidak sesuai.
+
+3. Apa kegunaan atribut WebClient?
+
+**Jawab**:
+WebClient adalah higher-level abstraction dari HttpWebRequest yang disediakan oleh Spring Framework untuk mempermudah operasi seperti Create, Read, Update, dan Delete. Fungsi utamanya adalah untuk menginstansi sebuah akses poin URL dan juga akan mengelola request serta response dari URL tersebut.
+
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
+
+**Jawab**:
+ - ResponseEntity merupakan sesuatu yang merepresentasikan keseluruhan HTTP response, mulai dari status code, headers, and body. Sebagai hasilnya, kita bisa menggunakannya untuk melakukan konfigurasi keseluruhan terhadap HTTP response. 
+
+
+ - BindingResult merupakan objek yang dimiliki oleh Spring, dimana objek tersebut akan menyimpan hasil dari validasi dan binding. Selain itu akan menyimpan error-error yang mungkin terjadi. BindingResult harus datang langsung setelah objek model sudah tervalidasi, jika tidak maka Spring akan gagal melakukan validasi terhadap objek dan akan melakukan throw exception.
+
+
+### Sources:
+ - https://medium.com/@novancimol12/postman-4f181d625fe1#:~:text=Postman%20merupakan%20tool%20untuk%20melakukan,Collection
+ - https://wirasetiawan29.wordpress.com/2015/04/16/webclient-vs-httpclient/
+ - https://www.baeldung.com/spring-response-entity
+ - https://stackoverflow.com/questions/10413886/what-is-the-use-of-bindingresult-interface-in-spring-mvc#:~:text=%5B%20BindingResult%20%5D%20is%20Spring's%20object%20that,object%20and%20throw%20an%20exception.w
+
