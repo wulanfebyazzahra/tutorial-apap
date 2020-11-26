@@ -28,7 +28,7 @@ public class UserController {
             model.addAttribute("mes", "Password harus ada angka dan huruf serta minimal 8 karakter!");
             return "home";
         }
-        return "add-user";
+        return "home";
     }
 
     @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
@@ -62,6 +62,6 @@ public class UserController {
         }else {
             model.addAttribute("msg", "Password salah!");
         }
-        return "update-password";
+        return "home";
     }
 }

@@ -232,11 +232,11 @@ WebClient adalah higher-level abstraction dari HttpWebRequest yang disediakan ol
 **Jawab**:
 Otentikasi adalah sebuah proses untuk memverifikasi apakah user yang sedang melakukan login dengan username yang dituju telah terdaftar di database. Otorisasi adalah sebuah proses untuk menentukan apakah user memiliki hak untuk mengakses ke halaman tertentu yang telah di otentikasi.
  
-    Contoh implementasi otentikasi pada class `WebSecurityConfig`:
-        @Autowired
-            public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{auth.userDetailsService(userDetailsService).passwordEncode(encoder());}
+ - Contoh implementasi otentikasi pada class `WebSecurityConfig`:
+    @Autowired
+        public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{auth.userDetailsService(userDetailsService).passwordEncode(encoder());}
 
-    Contoh implementasi otorisasi pada class `WebSecurityConfig`:
+ - Contoh implementasi otorisasi pada class `WebSecurityConfig`:
         .authorizeRequests()
         .antMatchers("/css/**").permitAll()
         .antMatchers("/js/**").permitAll()
