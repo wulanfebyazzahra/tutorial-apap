@@ -224,3 +224,36 @@ WebClient adalah higher-level abstraction dari HttpWebRequest yang disediakan ol
  - https://www.baeldung.com/spring-response-entity
  - https://stackoverflow.com/questions/10413886/what-is-the-use-of-bindingresult-interface-in-spring-mvc#:~:text=%5B%20BindingResult%20%5D%20is%20Spring's%20object%20that,object%20and%20throw%20an%20exception.w
 
+---
+## Tutorial 6
+
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+
+**Jawab**:
+Otentikasi adalah sebuah proses untuk memverifikasi apakah user yang sedang melakukan login dengan username yang dituju telah terdaftar di database. Otorisasi adalah sebuah proses untuk menentukan apakah user memiliki hak untuk mengakses ke halaman tertentu yang telah di otentikasi.
+ 
+ - Contoh implementasi otentikasi pada class `WebSecurityConfig`:
+    @Autowired
+        public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{auth.userDetailsService(userDetailsService).passwordEncode(encoder());}
+
+ - Contoh implementasi otorisasi pada class `WebSecurityConfig`:
+        .authorizeRequests()
+        .antMatchers("/css/**").permitAll()
+        .antMatchers("/js/**").permitAll()
+        .antMatchers("/hotel/**").hasAuthority("RECEPTIONIST")
+        .antMatchers("/kamar/add/**").hasAuthority("RECEPTIONIST")
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerja dan tujuannya.
+
+**Jawab**:
+BCryptPasswordEncoder adalah salah satu fungsi password hashing yang berfungsi untuk melakukan enkripsi kata sandi user sebelum disimpan ke database. BCryptPasswordEncoder juga berfungsi untuk melakukan enkripsi terhadap kata sandi pada saat user ingin melakukan login. 
+
+3. Jelaskan secara singkat apa itu UUID beserta penggunaannya!
+
+**Jawab**:
+UUID (Universally Unique Identifier) adalah 32 karakter string yang dibuat secara random dengan algoritma tertentu. UUID meningkatkan keamanan data user karena id pengguna akan di generate secara unique dengan hashing sebanyak 32 karakter secara acak sehingga id user menjadi aman dan tidak mudah untuk di hack.
+
+4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java?
+
+**Jawab**:
+Class UserDetailsServiceImpl.java berfungsi untuk mengambil informasi otentikasi dan otorisasi user. Menurut saya, harus ada Class UserDetailsImpl.java padahal kita sudah memiliki UserRoleServiceImpl.java karena class ini dapat melakukan otorisasi terhadap user yang melakukan login sesuai dengan role yang sudah terdaftar di database.
