@@ -266,6 +266,7 @@ dari apa yang Anda jelaskan.
 
 **Jawab**:
  - Latihan 1
+
  Pada latihan pertama ini, yang saya lakukan adalah menambahkan kondisi if/else. If/else tersebut berfungsi untuk mengecek apakah *checked* bernilai true, apabila bernilai true maka checkbox pun akan diperlihatkan.
 
 ```ruby
@@ -278,7 +279,8 @@ dari apa yang Anda jelaskan.
 ```
 
  - Latihan 2
-Pada latihan kedua, yang saya lakukan adalah menambah function bernama handleDeleteClick() pada component App yang akan menghandle penghapusan list favorit apabila di klik.
+ 
+ Pada latihan kedua, yang saya lakukan adalah menambah function bernama handleDeleteClick() pada App.js yang akan menghandle penghapusan list favorit apabila di klik.
 
  ```ruby
        handleDeleteClick = () => {
@@ -303,9 +305,48 @@ Setelah menambahkan function tersebut, selanjutnya saya akan memanggil function 
 
 
  - Latihan 4
+ Pada latihan keempat untuk membuat toggle yang menampilkan list favorit, saya pertama-tama membuat state dengan nilai default false.
 
+```ruby
+       state = {
+       favItems: [],
+       textDisplay: false
+       };
+```
+
+Selanjutnya saya membuat suatu function di App.js dengan nama clickToggle(), dimana function tersebut akan memberikan nilai booleann terbalik dari state yang akan masuk ke function. Function ini akan dimengaktifkan on/off dari toggle button.
+
+```ruby
+       clickToggle = () => {
+       this.setState(currentState => ({
+       textDisplay: !currentState.textDisplay
+       }));
+       };
+```
+
+Selanjutnya pada App.js saya menambahkan toggle yang akan mengaktifkan function clickToggle()
+
+```ruby
+       <input 
+       type="checkbox" 
+       onClick={this.clickToggle} />
+       <span className="slider round"></span>
+       </label>
+```
+Lalu saya menambahkan kondisi if/else apabila toggle bernilai false tidak akan menampilkan list film favorit. Namun sebaliknya, jika toggle bernilai true maka list favorit akan ditampilkan.
+
+```ruby
+       <div className={`col-sm ${textDisplay ? "d-block" : "d-none"}`}>
+       <List
+              title="My Favorites"
+              items={favItems}
+              onItemClick={this.handleFavoriteClick}
+       />
+       </div>
+```
 
  - Latihan 5
+ 
  Pada latihan kelima, yang saya lakukan adalah menambahkan component baru bernama EmptyState. Di dalamnya saya memasukkan suatu index.js yang berisi function EmptyState. Kemudian pada List/index.js yang saya lakukan adalah menambahkan kondisi if/else, dimana apabila list favorit tidak kosong, maka list favorit pun akan ditunjukkan. Sebaliknya jika list favorit kosong maka akan ditamplkan empty state yang telah saya buat tadi di component yang baru.
 
 ```ruby
