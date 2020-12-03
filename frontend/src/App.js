@@ -16,7 +16,6 @@ export default class App extends React.Component {
     this.setState({ favItems: newItems });
   };
 
-  // handle list favorit
   handleFavoriteClick = item => {
     const newItems = [...this.state.favItems];
     const newItem = { ...item };

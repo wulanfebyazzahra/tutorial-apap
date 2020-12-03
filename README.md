@@ -302,7 +302,42 @@ Setelah menambahkan function tersebut, selanjutnya saya akan memanggil function 
        )};
 ```
  - Latihan 3
+ Pada latihan ketiga yang saya lakukan adalah mengubah function handleItemClick() menjadi handleFavoriteClick(). Kemudian saya menambah satu function lagi bernama yang sama yaitu handleItemClick(), dimana isi fungsi tersebut sama persis dengan handleFavoriteClick(), yang berbeda adalah saya menghapus kondisi else newItems.splice(targetInd, 1);
 
+ ```ruby
+       handleItemClick = item => {
+       const newItems = [...this.state.favItems];
+       const newItem = { ...item };
+
+       const targetInd = newItems.findIndex(it => it.id === newItem.id);
+       if (targetInd < 0) newItems.push(newItem);
+
+       this.setState({ favItems: newItems });
+       };
+
+       handleFavoriteClick = item => {
+       const newItems = [...this.state.favItems];
+       const newItem = { ...item };
+
+       const targetInd = newItems.findIndex(it => it.id === newItem.id);
+       if (targetInd < 0) newItems.push(newItem);
+       else newItems.splice(targetInd, 1);
+
+       this.setState({ favItems: newItems });
+       };
+```
+
+Selanjutnya pada elemen My Favorites saya mengubah onItemClick yang tadinya this.handleItemClick menjadi this.handleFavoriteClick.
+
+ ```ruby
+       <div className={`col-sm ${textDisplay ? "d-block" : "d-none"}`}>
+       <List
+              title="My Favorites"
+              items={favItems}
+              onItemClick={this.handleFavoriteClick}
+       />
+       </div>
+```
 
  - Latihan 4
  Pada latihan keempat untuk membuat toggle yang menampilkan list favorit, saya pertama-tama membuat state dengan nilai default false.
@@ -380,9 +415,7 @@ Props atau property merupakan suatu parameter dalam functional components, diman
 3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!
 
 **Jawab**:
-Sebelum mengetahui kelebihan dari component, definisi dari component sendiri merupakan bagian-bagian kecil dari suatu aplikasi. Dimana komponen ini nantinya adapat digunakan menjadi sebuah aplikasi. Berikut adalah keuntungan yang didapatkan apabila menggunakan component:
- - Component bersifat reusable, sehingga dapat digunakan kembali.
- - 
+Sebelum mengetahui kelebihan dari component, definisi dari component sendiri merupakan bagian-bagian kecil dari suatu aplikasi. Dimana komponen ini nantinya adapat digunakan menjadi sebuah aplikasi. Keuntungan yang didapatkan apabila menggunakan component adalah component bersifat reusable, sehingga dapat digunakan kembali. Selain itu dengan menggunakan component kode yang kita buat juga menjadi lebih rapih, mudah dipahami, dan mudah diaksesnya. Sehingga jika bertemu dengan error akan lebih mudah untuk diperbaikinya. Contoh implementasinya adalah pada tutorial dan latihan kita memisahkan component List dan Item, dimana List akan dipergunakan untuk mengelola list film favorit, sedangkan Item akan digunakan untuk mengelola list film. Dapat dilihat dengan memisahkan keduanya, kodingan yang dibuat akan menjadi lebih rapih dan mudah diakses apabila terdapat kesalahan.
 
 4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?
 
