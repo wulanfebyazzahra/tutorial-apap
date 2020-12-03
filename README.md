@@ -257,3 +257,28 @@ UUID (Universally Unique Identifier) adalah 32 karakter string yang dibuat secar
 
 **Jawab**:
 Class UserDetailsServiceImpl.java berfungsi untuk mengambil informasi otentikasi dan otorisasi user. Menurut saya, harus ada Class UserDetailsImpl.java padahal kita sudah memiliki UserRoleServiceImpl.java karena class ini dapat melakukan otorisasi terhadap user yang melakukan login sesuai dengan role yang sudah terdaftar di database.
+
+---
+## Tutorial 7
+
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi
+dari apa yang Anda jelaskan.
+**Jawab**:
+
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?
+**Jawab**:
+
+
+3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!
+**Jawab**:
+
+
+4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?
+**Jawab**:
+
+
+5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?
+**Jawab**:
+
+### Sources:
