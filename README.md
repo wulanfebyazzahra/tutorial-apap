@@ -257,3 +257,189 @@ UUID (Universally Unique Identifier) adalah 32 karakter string yang dibuat secar
 
 **Jawab**:
 Class UserDetailsServiceImpl.java berfungsi untuk mengambil informasi otentikasi dan otorisasi user. Menurut saya, harus ada Class UserDetailsImpl.java padahal kita sudah memiliki UserRoleServiceImpl.java karena class ini dapat melakukan otorisasi terhadap user yang melakukan login sesuai dengan role yang sudah terdaftar di database.
+
+---
+## Tutorial 7
+
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi
+dari apa yang Anda jelaskan.
+
+**Jawab**:
+ - Latihan 1
+
+ Pada latihan pertama ini, yang saya lakukan adalah menambahkan kondisi if/else. If/else tersebut berfungsi untuk mengecek apakah *checked* bernilai true, apabila bernilai true maka checkbox pun akan diperlihatkan.
+
+```ruby
+       <input
+       type={checked ? "checkbox" : "hidden"}                                
+       className="ml-2"
+       checked={checked}
+       onChange={handleChange}
+       />
+```
+
+ - Latihan 2
+ 
+ Pada latihan kedua, yang saya lakukan adalah menambah function bernama handleDeleteClick() pada App.js yang akan menghandle penghapusan list favorit apabila di klik.
+
+ ```ruby
+       handleDeleteClick = () => {
+       this.setState({favItems: []
+       });
+       };
+```
+Setelah menambahkan function tersebut, selanjutnya saya akan memanggil function tersebut pada button yang saya buat. Pada button tersebut saya juga menambahkan kondisi if/else apabila list favoritnya tidak kosong maka button tersebut akan ditampilkan.
+
+```ruby
+       {!favItems.length == 0 ? (
+       <div className="d-flex justify-content-center align-items-center">
+       <button className="btn btn btn-outline-dark" onClick={this.handleDeleteClick}>
+       Delete Favorites
+       </button>
+       </div>
+       ) : (
+       null
+       )};
+```
+ - Latihan 3
+ Pada latihan ketiga yang saya lakukan adalah mengubah function handleItemClick() menjadi handleFavoriteClick(). Kemudian saya menambah satu function lagi bernama yang sama yaitu handleItemClick(), dimana isi fungsi tersebut sama persis dengan handleFavoriteClick(), yang berbeda adalah saya menghapus kondisi else newItems.splice(targetInd, 1);
+
+ ```ruby
+       handleItemClick = item => {
+       const newItems = [...this.state.favItems];
+       const newItem = { ...item };
+
+       const targetInd = newItems.findIndex(it => it.id === newItem.id);
+       if (targetInd < 0) newItems.push(newItem);
+
+       this.setState({ favItems: newItems });
+       };
+
+       handleFavoriteClick = item => {
+       const newItems = [...this.state.favItems];
+       const newItem = { ...item };
+
+       const targetInd = newItems.findIndex(it => it.id === newItem.id);
+       if (targetInd < 0) newItems.push(newItem);
+       else newItems.splice(targetInd, 1);
+
+       this.setState({ favItems: newItems });
+       };
+```
+
+Selanjutnya pada elemen My Favorites saya mengubah onItemClick yang tadinya this.handleItemClick menjadi this.handleFavoriteClick.
+
+ ```ruby
+       <div className={`col-sm ${textDisplay ? "d-block" : "d-none"}`}>
+       <List
+              title="My Favorites"
+              items={favItems}
+              onItemClick={this.handleFavoriteClick}
+       />
+       </div>
+```
+
+ - Latihan 4
+ Pada latihan keempat untuk membuat toggle yang menampilkan list favorit, saya pertama-tama membuat state dengan nilai default false.
+
+```ruby
+       state = {
+       favItems: [],
+       textDisplay: false
+       };
+```
+
+Selanjutnya saya membuat suatu function di App.js dengan nama clickToggle(), dimana function tersebut akan memberikan nilai booleann terbalik dari state yang akan masuk ke function. Function ini akan dimengaktifkan on/off dari toggle button.
+
+```ruby
+       clickToggle = () => {
+       this.setState(currentState => ({
+       textDisplay: !currentState.textDisplay
+       }));
+       };
+```
+
+Selanjutnya pada App.js saya menambahkan toggle yang akan mengaktifkan function clickToggle()
+
+```ruby
+       <input 
+       type="checkbox" 
+       onClick={this.clickToggle} />
+       <span className="slider round"></span>
+       </label>
+```
+Lalu saya menambahkan kondisi if/else apabila toggle bernilai false tidak akan menampilkan list film favorit. Namun sebaliknya, jika toggle bernilai true maka list favorit akan ditampilkan.
+
+```ruby
+       <div className={`col-sm ${textDisplay ? "d-block" : "d-none"}`}>
+       <List
+              title="My Favorites"
+              items={favItems}
+              onItemClick={this.handleFavoriteClick}
+       />
+       </div>
+```
+
+ - Latihan 5
+ 
+ Pada latihan kelima, yang saya lakukan adalah menambahkan component baru bernama EmptyState. Di dalamnya saya memasukkan suatu index.js yang berisi function EmptyState. Kemudian pada List/index.js yang saya lakukan adalah menambahkan kondisi if/else, dimana apabila list favorit tidak kosong, maka list favorit pun akan ditunjukkan. Sebaliknya jika list favorit kosong maka akan ditamplkan empty state yang telah saya buat tadi di component yang baru.
+
+```ruby
+       export default function EmptyState() {
+       return (
+       <>
+       <h3 className="text-center">Belum ada item yang dipilih</h3>
+       <p className="text-center">Klik salah satu item di List Movies</p>
+       </>
+       );
+       }
+```
+
+```ruby
+      {items.length !== 0 ? (
+        <div className="list-group">
+          {items.map(item => (
+            <Item key={item.id} item={item} onChange={onItemClick} />
+          ))}
+        </div>
+      ) : (
+        <EmptyState />
+      )}
+```
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?
+
+**Jawab**:
+Props atau property merupakan suatu parameter dalam functional components, dimana props ini dapat diakses pada suatu kelas atau function dengan menggunakan "this". Property ini mirip seperti atribut pada tag HTML. Sedangkan State merupakan data private dari sebuah component yang tidak bisa diakses oleh komponen lainnya. Nantinya komponen akan menetapkan default value dari state. State ini nanti bisa dipakai untuk menyimpan atau mendeklarasi suatu objek yang kita inginkan.
+
+3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!
+
+**Jawab**:
+Sebelum mengetahui kelebihan dari component, definisi dari component sendiri merupakan bagian-bagian kecil dari suatu aplikasi. Dimana komponen ini nantinya adapat digunakan menjadi sebuah aplikasi. Keuntungan yang didapatkan apabila menggunakan component adalah component bersifat reusable, sehingga dapat digunakan kembali. Selain itu dengan menggunakan component kode yang kita buat juga menjadi lebih rapih, mudah dipahami, dan mudah diaksesnya. Sehingga jika bertemu dengan error akan lebih mudah untuk diperbaikinya. Contoh implementasinya adalah pada tutorial dan latihan kita memisahkan component List dan Item, dimana List akan dipergunakan untuk mengelola list film favorit, sedangkan Item akan digunakan untuk mengelola list film. Dapat dilihat dengan memisahkan keduanya, kodingan yang dibuat akan menjadi lebih rapih dan mudah diakses apabila terdapat kesalahan.
+
+4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?
+
+**Jawab**:
+Berikut ini merupakan kelebihan dan keuntungan yang mungkin didapatkan apabila menggunakan React, yaitu:
+ - Kemudahan dalam menulis komponennya.
+ - Proses rendering jauh lebih cepat karena adanya virtual DOM.
+ - Kode yang dibangun terjamin kestabilannya.
+ - SEO friendly.
+ - Komponen-komponen yang dapat digunakan kembali.
+ - Mudah dipelajari.
+ - Dapat digunakan dalam pengembangan aplikasi.
+
+5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?
+
+**Jawab**:
+Berikut ini merupakan kekurangan dalam menggunakan React dalam pengembangan web:
+ - Laju pembangunan yang tinggi, karena sering terjadinya perubahan yang dengan cepat terjadi.
+ - Dokumentasi yang buruk.
+ - React hanya mencakup lapisan UI aplikasi dan tidak ada yang lain.
+ - Pada browser versi lama tidak mendukung React.
+
+### Sources:
+ - https://medium.com/coderupa/react-prop-state-apa-bedanya-7ee61df8257f
+ - https://www.techfor.id/10-keuntungan-menggunakan-react-js-pada-desain-website/#:~:text=Manfaat%20lain%20React%20js%20adalah,browser%20sebagai%20laman%20web%20biasa.
+ - konsepkoding.com/2020/08/1-pengenalan-reactjs-kekurangan-dan.html
+ - https://belajarreactjs.com/kelemahan-dari-reactjs/
