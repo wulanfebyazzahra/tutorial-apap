@@ -144,18 +144,19 @@ class HotelList extends Component {
         console.log(this.state.isLoading);
     }
 
-    // Search Bar
+    // Search Filter
     searchFilter (text) {
         if (text === "") {
             this.setState({ searchedHotels: this.state.hotels});
+            this.setState( {isFilter: false} );
         } else {
             const filteredHotels = this.state.hotels.filter(hotel => {
                 return hotel.namaHotel.toLowerCase().indexOf(text.toLowerCase()) === 0;
             });
 
             this.setState({ searchedHotels: filteredHotels });
+            this.setState( {isFilter: true} );
         }
-        this.setState( {isFilter: true} );
     };
 
     // Pagination
@@ -176,7 +177,7 @@ class HotelList extends Component {
                 {this.state.isFilter ?
                     (
                         <div>
-                            {this.state.searchedHotels && this.state.searchedHotels.slice(this.state.page*5, (this.state.page+1)*5).map((hotel) => (
+                            {this.state.searchedHotels && this.state.searchedHotels.map((hotel) => (
                                 <Hotel
                                     key={hotel.id}
                                     id={hotel.id}

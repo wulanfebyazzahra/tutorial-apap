@@ -485,7 +485,11 @@ async loadData(){
 
 ![Screenshot 2](https://i.ibb.co/FmKQF7t/Screen-Shot-2020-12-10-at-10-49-57-AM.png)
 
-![Screenshot 3](https://i.ibb.co/xKkSGFK/Screen-Shot-2020-12-10-at-10-54-43-AM.png)
+![Screenshot 3](https://i.ibb.co/5k97h8H/Screen-Shot-2020-12-11-at-9-11-58-PM.png)
+
+![Screenshot 4](https://i.ibb.co/R7v8HZN/Screen-Shot-2020-12-10-at-10-53-37-AM.png)
+
+![Screenshot 5](https://i.ibb.co/qJJGPTc/Screen-Shot-2020-12-11-at-9-17-22-PM.png)
 
 4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount. Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”.
 
