@@ -443,3 +443,53 @@ Berikut ini merupakan kekurangan dalam menggunakan React dalam pengembangan web:
  - https://www.techfor.id/10-keuntungan-menggunakan-react-js-pada-desain-website/#:~:text=Manfaat%20lain%20React%20js%20adalah,browser%20sebagai%20laman%20web%20biasa.
  - konsepkoding.com/2020/08/1-pengenalan-reactjs-kekurangan-dan.html
  - https://belajarreactjs.com/kelemahan-dari-reactjs/
+
+---
+## Tutorial 8
+
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?
+
+**Jawab**:
+
+
+
+2. Jelaskan fungsi dari async dan await!
+
+**Jawab**:
+Fungsi dari async adalah untuk menandakan fungsi yang dibuat bersifat asinkron atau non-blocking. Fungsi dari await adalah untuk menangani proses asinkron yang sedang running hingga selesai sebelum code setelah await dijalankan. Implementasi async dan await di tutorial 8 ini ada di class HotelList, salah satu contohnya adalah method loadData, yaitu:
+
+```ruby
+async loadData(){
+       try{
+              const {data} = await APIConfig.get("/hotels");
+              this.setState({hotels: data});
+       }catch(error){
+              alert("Ooops terjadi masalah pada server");
+              console.log(error);
+       }
+}
+```
+
+3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 7 pada Component Lifecycle pada pertanyaan ini.
+
+**Jawab**:
+
+
+4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount. Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”.
+
+**Jawab**:
+
+ - **componentDidMount**: Melakukan fetching data setelah component telah selesai melakukan render.
+
+ - **shouldComponentUpdate**: Memiliki 2 parameter (nextProps dan nextState) dan dijalankan sebelum component melakukan render ulang terhadap perubahan yang terjadi. Component akan di render ulang jika return nya adalah true, jika false component tidak akan di render ulang.
+
+ - **componentDidUpdate**: Menerima 2 parameter (prevProps dan prevState), dijalankan setelah component yang di render ulang (diupdate) sudah selesai di render dan digunakan saat melakukan interaksi dengan environment non React.
+
+ - **componentWillReceiveProps**: Dijalankan sebelum component mengisi props yang baru dan mengalami pembaruan untuk membandingkan props yang ada dengan yang baru dan juga untuk memeriksa apakah terdapat perubahan yang terjadi dengan props tersebut.
+
+ - **componentWillUnmount**: Dijalankan sebelum component di hapus dari DOM dan melakukan cleanup seperti membatalkan network request dan menghilangkan event listener.
+
+### Sources:
+ - https://id.reactjs.org/docs/react-component.html
+ - https://www.w3schools.com/react/react_lifecycle.asp
+ - https://www.valentinog.com/blog/await-react/
