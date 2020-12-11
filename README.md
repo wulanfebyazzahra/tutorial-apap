@@ -450,7 +450,7 @@ Berikut ini merupakan kekurangan dalam menggunakan React dalam pengembangan web:
 1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?
 
 **Jawab**:
-Untuk menyelesaikan masalah yang terjadi pada latihan nomor 1, langkah yang saya lakukan adalah menambahkan this.setState pada handleAddHotel(). Dimana di dalamnya saya menambahkan value kosong ("") untuk namaHotel, alamat, serta nomorTelepon. Setelah saya meletakan state tersebut maka yang akan terjadi adalah default value pada form saat melakukan penambahan hotel akan selalu ketika ingin diisi.
+Untuk menyelesaikan masalah yang terjadi pada latihan nomor 1, langkah yang saya lakukan adalah menambahkan this.setState pada handleAddHotel(). Dimana di dalamnya saya menambahkan value kosong ("") untuk namaHotel, alamat, serta nomorTelepon. Setelah saya meletakan state tersebut maka yang akan terjadi adalah default value pada form akan selalu kosong saat kita ingin menambahkan hotel, sehingga input yang telah kita masukan sebelumnya pun tidak akan muncul.
 
 ```ruby
 this.setState({
@@ -485,7 +485,7 @@ async loadData(){
 
 ![Screenshot 2](https://i.ibb.co/FmKQF7t/Screen-Shot-2020-12-10-at-10-49-57-AM.png)
 
-![Screenshot 3](https://i.ibb.co/R7v8HZN/Screen-Shot-2020-12-10-at-10-53-37-AM.png)
+![Screenshot 3](https://i.ibb.co/xKkSGFK/Screen-Shot-2020-12-10-at-10-54-43-AM.png)
 
 4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount. Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”.
 

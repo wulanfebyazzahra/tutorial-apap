@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from "./styles.module.css";
 
-const Pagination = ({totalPage, interval, currentPage, handleClick}) =>{
+const Pagination = ({interval, currentPage, totalPage, handleClick}) =>{
 
     // Untuk membagi total page dengan interval (untuk mengetahui berapa page)
     const page = Math.ceil(totalPage/interval) || 1

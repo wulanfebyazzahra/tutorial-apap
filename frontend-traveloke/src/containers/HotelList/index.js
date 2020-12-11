@@ -77,6 +77,7 @@ class HotelList extends Component {
         }
         this.handleCancel(event);
 
+        // Mengosongkan form
         this.setState({
             namaHotel: "",
             alamat: "",
@@ -254,9 +255,9 @@ class HotelList extends Component {
                 </Modal>
 
                 <Pagination 
+                interval={5}
                 currentPage={this.state.page}
                 totalPage={this.state.hotels.length}
-                interval={5}
                 handleClick={this.handlePage}
                 />
             </div>
