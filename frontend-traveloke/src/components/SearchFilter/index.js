@@ -10,11 +10,10 @@ export default class SearchFilter extends Component {
     const { query } = this.props;
     
     return (
-      <React.Fragment>
         <div className="container h-100">
           <div className="d-flex justify-content-center h-100">
             <input
-              className={classes.searchinput}
+              className={classes.search}
               placeholder="Cari hotel..."
               name="search"
               type="text"
@@ -23,7 +22,6 @@ export default class SearchFilter extends Component {
             />
           </div>
         </div>
-      </React.Fragment>
     );
   }
 }

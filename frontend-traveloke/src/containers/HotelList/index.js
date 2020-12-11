@@ -175,7 +175,7 @@ class HotelList extends Component {
                 {this.state.isFilter ?
                     (
                         <div>
-                            {this.state.searchedHotels && this.state.searchedHotels.map((hotel) => (
+                            {this.state.searchedHotels && this.state.searchedHotels.slice(this.state.page*5, (this.state.page+1)*5).map((hotel) => (
                                 <Hotel
                                     key={hotel.id}
                                     id={hotel.id}

@@ -3,6 +3,7 @@ import classes from "./styles.module.css";
 import Button from "../../components/Button";
 
 const Hotel= (props) => {
+    
     const { id, namaHotel, alamat, nomorTelepon,listKamar, handleEdit, handleDelete } = props;
 
     return (
@@ -23,8 +24,8 @@ const Hotel= (props) => {
                     })
                 }
             </div>
-
-            <br/>
+            
+            <br></br>
             <Button onClick={handleEdit} variant="success">
                 Edit
             </Button>
