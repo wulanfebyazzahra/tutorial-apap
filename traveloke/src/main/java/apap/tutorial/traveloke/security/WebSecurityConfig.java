@@ -18,9 +18,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
+//            .cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and()
             .authorizeRequests()
             .antMatchers("/css/**").permitAll()
             .antMatchers("/js/**").permitAll()
+            .antMatchers("/api/v1/**").permitAll()
             .antMatchers("/hotel/**").hasAuthority("RECEPTIONIST")
             .antMatchers("/kamar/add/**").hasAuthority("RECEPTIONIST")
             .anyRequest().authenticated()
@@ -28,7 +30,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin()
             .loginPage("/login").permitAll()
             .and()
-            .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
+            .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll()
+                .and()
+                .cors()
+                .and()
+                .csrf()
+                .disable();
     }
     @Bean
     public BCryptPasswordEncoder encoder(){
