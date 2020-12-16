@@ -38,6 +38,7 @@ class HotelList extends Component {
     }
 
     async loadData(){
+        this.setState({isLoading: true});
         try{
             const fetchedHotels = [];
             const response = await APIConfig.get("/hotels");
@@ -54,7 +55,9 @@ class HotelList extends Component {
             alert("Oops terjadi masalah pada server");
             console.log(error);
         }
+        this.setState({isLoading: false});
     }
+    
 
     // Handle Add
     handleAddHotel() {
@@ -173,6 +176,8 @@ class HotelList extends Component {
                 </Button>
                 
                 <SearchFilter onChange={this.searchFilter}></SearchFilter>
+
+                {this.state.isLoading == true ? <h5 className={classes.title}>Fetching Data...</h5> : null}
 
                 {this.state.isFilter ?
                     (
